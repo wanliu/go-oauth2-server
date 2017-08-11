@@ -3,8 +3,8 @@ package migrations
 import (
 	"fmt"
 
-	"github.com/RichardKnop/go-oauth2-server/logger"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/logger"
 )
 
 // Bootstrap creates "migrations" table

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/RichardKnop/go-oauth2-server/config"
 	"github.com/gorilla/sessions"
+	"github.com/wanliu/go-oauth2-server/config"
 )
 
 // Service wraps session functionality

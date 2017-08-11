@@ -5,11 +5,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/session"
 	"github.com/gorilla/sessions"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
+	"github.com/wanliu/go-oauth2-server/config"
+	"github.com/wanliu/go-oauth2-server/session"
 )
 
 // SessionTestSuite needs to be exported so the tests run

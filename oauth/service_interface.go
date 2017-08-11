@@ -1,12 +1,12 @@
 package oauth
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/session"
-	"github.com/RichardKnop/go-oauth2-server/util/routes"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/config"
+	"github.com/wanliu/go-oauth2-server/models"
+	"github.com/wanliu/go-oauth2-server/session"
+	"github.com/wanliu/go-oauth2-server/util/routes"
 )
 
 // ServiceInterface defines exported methods

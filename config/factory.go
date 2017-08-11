@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/logger"
+	"github.com/wanliu/go-oauth2-server/logger"
 )
 
 var (

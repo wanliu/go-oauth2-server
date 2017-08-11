@@ -1,9 +1,9 @@
 package oauth
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/oauth/roles"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/config"
+	"github.com/wanliu/go-oauth2-server/oauth/roles"
 )
 
 // Service struct keeps objects to avoid passing them around

@@ -1,10 +1,7 @@
 {
-	"ImportPath": "github.com/RichardKnop/go-oauth2-server",
+	"ImportPath": "github.com/wanliu/go-oauth2-server",
 	"GoVersion": "go1.8",
 	"GodepVersion": "v79",
-	"Packages": [
-		"./..."
-	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/RichardKnop/go-fixtures",
@@ -24,43 +21,38 @@
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/auth/authpb",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/clientv3",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/etcdserver/api/v3rpc/rpctypes",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/etcdserver/etcdserverpb",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/mvcc/mvccpb",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/pkg/tlsutil",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
 			"ImportPath": "github.com/coreos/etcd/pkg/transport",
-			"Comment": "v3.2.0-rc.0-74-g386374a6d",
+			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
-		},
-		{
-			"ImportPath": "github.com/davecgh/go-spew/spew",
-			"Comment": "v1.1.0",
-			"Rev": "346938d642f2ec3594ed81d874461961cd0faa76"
 		},
 		{
 			"ImportPath": "github.com/golang/protobuf/proto",
@@ -92,7 +84,7 @@
 		},
 		{
 			"ImportPath": "github.com/hashicorp/consul/api",
-			"Comment": "v0.8.0-25-g3ef7dde6",
+			"Comment": "v0.8.0-25-g3ef7dde",
 			"Rev": "3ef7dde64c27e015c61be5e08c3ca55199726b1a"
 		},
 		{
@@ -124,11 +116,6 @@
 			"Rev": "2704adc878c21e1329f46f6e56a1c387d788ff94"
 		},
 		{
-			"ImportPath": "github.com/mattn/go-sqlite3",
-			"Comment": "v1.2.0-80-gcf7286f",
-			"Rev": "cf7286f069c3ef596efcc87781a4653a2e7607bd"
-		},
-		{
 			"ImportPath": "github.com/mitchellh/mapstructure",
 			"Rev": "cc8532a8e9a55ea36402aa21efdf403a60d34096"
 		},
@@ -141,33 +128,8 @@
 			"Rev": "8118ae63850fee22b2fe43cea81d3bc149774503"
 		},
 		{
-			"ImportPath": "github.com/pmezard/go-difflib/difflib",
-			"Comment": "v1.0.0",
-			"Rev": "792786c7400a136282c1664665ae0a8db921c6c2"
-		},
-		{
-			"ImportPath": "github.com/stretchr/objx",
-			"Rev": "1a9d0bb9f541897e62256577b352fdbc1fb4fd94"
-		},
-		{
-			"ImportPath": "github.com/stretchr/testify/assert",
-			"Comment": "v1.1.4-66-gf6abca5",
-			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
-		},
-		{
-			"ImportPath": "github.com/stretchr/testify/mock",
-			"Comment": "v1.1.4-66-gf6abca5",
-			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
-		},
-		{
-			"ImportPath": "github.com/stretchr/testify/require",
-			"Comment": "v1.1.4-66-gf6abca5",
-			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
-		},
-		{
-			"ImportPath": "github.com/stretchr/testify/suite",
-			"Comment": "v1.1.4-66-gf6abca5",
-			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
+			"ImportPath": "github.com/tcnksm/go-input",
+			"Rev": "bbe13e92fa7dda71a4e012e3f427df11866c7651"
 		},
 		{
 			"ImportPath": "github.com/unrolled/secure",
@@ -189,6 +151,10 @@
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/blowfish",
+			"Rev": "122d919ec1efcfb58483215da23f815853e24b81"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh/terminal",
 			"Rev": "122d919ec1efcfb58483215da23f815853e24b81"
 		},
 		{
@@ -218,6 +184,10 @@
 		{
 			"ImportPath": "golang.org/x/net/trace",
 			"Rev": "513929065c19401a1c7b76ecd942f9f86a0c061b"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "e312636bdaa2fac4f0acde9d17ab9fbad2b4ad10"
 		},
 		{
 			"ImportPath": "golang.org/x/text/secure/bidirule",

@@ -7,8 +7,8 @@ import (
 	"os/exec"
 
 	"github.com/RichardKnop/go-fixtures"
-	"github.com/RichardKnop/go-oauth2-server/util/migrations"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/util/migrations"
 	// Drivers
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"

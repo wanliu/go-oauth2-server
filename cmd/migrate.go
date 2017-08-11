@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/util/migrations"
+	"github.com/wanliu/go-oauth2-server/models"
+	"github.com/wanliu/go-oauth2-server/util/migrations"
 )
 
 // Migrate runs database migrations

@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/services"
 	"github.com/gorilla/mux"
 	"github.com/phyber/negroni-gzip/gzip"
 	"github.com/urfave/negroni"
+	"github.com/wanliu/go-oauth2-server/services"
 	"gopkg.in/tylerb/graceful.v1"
 )
 

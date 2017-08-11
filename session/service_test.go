@@ -1,8 +1,8 @@
 package session_test
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/session"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/session"
 )
 
 func (suite *SessionTestSuite) TestService() {

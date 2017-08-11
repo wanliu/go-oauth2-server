@@ -1,8 +1,8 @@
 package health
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/util/routes"
 	"github.com/gorilla/mux"
+	"github.com/wanliu/go-oauth2-server/util/routes"
 )
 
 // ServiceInterface defines exported methods

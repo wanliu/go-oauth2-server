@@ -1,9 +1,9 @@
 package oauth_test
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/oauth"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/models"
+	"github.com/wanliu/go-oauth2-server/oauth"
 )
 
 func (suite *OauthTestSuite) TestFindClientByClientID() {

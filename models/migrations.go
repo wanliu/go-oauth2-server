@@ -3,8 +3,8 @@ package models
 import (
 	"fmt"
 
-	"github.com/RichardKnop/go-oauth2-server/util/migrations"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/util/migrations"
 )
 
 var (

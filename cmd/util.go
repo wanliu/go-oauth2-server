@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/database"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/config"
+	"github.com/wanliu/go-oauth2-server/database"
 )
 
 // initConfigDB loads the configuration and connects to the database

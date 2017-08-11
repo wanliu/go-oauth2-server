@@ -3,8 +3,8 @@ package util_test
 import (
 	"testing"
 
-	"github.com/RichardKnop/go-oauth2-server/util"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/util"
 )
 
 func TestRegexExtractMatch(t *testing.T) {

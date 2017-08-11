@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
+	"github.com/wanliu/go-oauth2-server/models"
 )
 
 var (

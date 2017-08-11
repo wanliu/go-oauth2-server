@@ -4,8 +4,8 @@ import (
 	"database/sql/driver"
 	"testing"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/models"
 )
 
 func TestNewAccessToken(t *testing.T) {

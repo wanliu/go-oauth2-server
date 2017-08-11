@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/util"
 	"github.com/RichardKnop/uuid"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/util"
 )
 
 // OauthClient ...

@@ -7,12 +7,12 @@
 This service implements [OAuth 2.0 specification](http://tools.ietf.org/html/rfc6749#section-4.3). Excerpts from the specification are included in this README file to describe different grant types. Please read the full spec for more detailed information.
 
 [![Travis Status for RichardKnop/go-oauth2-server](https://travis-ci.org/RichardKnop/go-oauth2-server.svg?branch=master&label=linux+build)](https://travis-ci.org/RichardKnop/go-oauth2-server)
-[![godoc for RichardKnop/go-oauth2-server](https://godoc.org/github.com/nathany/looper?status.svg)](http://godoc.org/github.com/RichardKnop/go-oauth2-server)
-[![goreportcard for RichardKnop/go-oauth2-server](https://goreportcard.com/badge/github.com/RichardKnop/go-oauth2-server)](https://goreportcard.com/report/RichardKnop/go-oauth2-server)
+[![godoc for RichardKnop/go-oauth2-server](https://godoc.org/github.com/nathany/looper?status.svg)](http://godoc.org/github.com/wanliu/go-oauth2-server)
+[![goreportcard for RichardKnop/go-oauth2-server](https://goreportcard.com/badge/github.com/wanliu/go-oauth2-server)](https://goreportcard.com/report/RichardKnop/go-oauth2-server)
 [![codecov for RichardKnop/go-oauth2-server](https://codecov.io/gh/RichardKnop/go-oauth2-server/branch/master/graph/badge.svg)](https://codecov.io/gh/RichardKnop/go-oauth2-server)
 [![Codeship Status for RichardKnop/go-oauth2-server](https://codeship.com/projects/fba90e10-7020-0133-0db8-4acedf45d268/status?branch=master)](https://codeship.com/projects/116440)
 
-[![Sourcegraph for RichardKnop/go-oauth2-server](https://sourcegraph.com/github.com/RichardKnop/go-oauth2-server/-/badge.svg)](https://sourcegraph.com/github.com/RichardKnop/go-oauth2-server?badge)
+[![Sourcegraph for RichardKnop/go-oauth2-server](https://sourcegraph.com/github.com/wanliu/go-oauth2-server/-/badge.svg)](https://sourcegraph.com/github.com/wanliu/go-oauth2-server?badge)
 [![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://richardknop.github.io/donate/)
 
 ---
@@ -370,7 +370,7 @@ The authorization server responds meta-information about a token.
 
 ## Plugins
 
-This server is easily extended or modified through the use of plugins. Four services, [health](https://github.com/RichardKnop/go-oauth2-server/tree/master/health), [oauth](https://github.com/RichardKnop/go-oauth2-server/tree/master/oauth), [session](https://github.com/RichardKnop/go-oauth2-server/tree/master/session) and [web](https://github.com/RichardKnop/go-oauth2-server/tree/master/web) are available for modification.
+This server is easily extended or modified through the use of plugins. Four services, [health](https://github.com/wanliu/go-oauth2-server/tree/master/health), [oauth](https://github.com/wanliu/go-oauth2-server/tree/master/oauth), [session](https://github.com/wanliu/go-oauth2-server/tree/master/session) and [web](https://github.com/wanliu/go-oauth2-server/tree/master/web) are available for modification.
 
 In order to implement a plugin:
 1. Create your own interface that implements all of methods of the service you are replacing.

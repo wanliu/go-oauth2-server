@@ -1,4 +1,4 @@
-.PHONY: update-deps install-deps fmt lint golint test test-with-coverage
+.PHONY: update-deps install-deps fmt lint golint test test-with-coverage build
 # TODO: When Go 1.9 is released vendor folder should be ignored automatically
 PACKAGES=`go list ./... | grep -v vendor | grep -v mocks`
 
@@ -38,3 +38,6 @@ test-with-coverage:
 		tail -n +2 coverage.out >> coverage-all.out; \
 	done;
 	#go tool cover -html=coverage-all.out
+
+build:
+	@docker build -t go-oauth2-server:latest .

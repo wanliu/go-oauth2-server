@@ -1,9 +1,9 @@
 package web
 
 import (
-	"github.com/RichardKnop/go-oauth2-server/util/routes"
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
+	"github.com/wanliu/go-oauth2-server/util/routes"
 )
 
 // RegisterRoutes registers route handlers for the health service

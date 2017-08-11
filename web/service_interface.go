@@ -3,11 +3,11 @@ package web
 import (
 	"net/http"
 
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/oauth"
-	"github.com/RichardKnop/go-oauth2-server/session"
-	"github.com/RichardKnop/go-oauth2-server/util/routes"
 	"github.com/gorilla/mux"
+	"github.com/wanliu/go-oauth2-server/config"
+	"github.com/wanliu/go-oauth2-server/oauth"
+	"github.com/wanliu/go-oauth2-server/session"
+	"github.com/wanliu/go-oauth2-server/util/routes"
 )
 
 // ServiceInterface defines exported methods

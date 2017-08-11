@@ -3,8 +3,8 @@ package web
 import (
 	"net/http"
 
-	"github.com/RichardKnop/go-oauth2-server/session"
 	"github.com/gorilla/context"
+	"github.com/wanliu/go-oauth2-server/session"
 )
 
 // parseFormMiddleware parses the form so r.Form becomes available

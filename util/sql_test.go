@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/util"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/util"
 )
 
 func TestIntOrNull(t *testing.T) {

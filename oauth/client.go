@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
-	"github.com/RichardKnop/go-oauth2-server/util"
-	"github.com/RichardKnop/go-oauth2-server/util/password"
 	"github.com/RichardKnop/uuid"
 	"github.com/jinzhu/gorm"
+	"github.com/wanliu/go-oauth2-server/models"
+	"github.com/wanliu/go-oauth2-server/util"
+	"github.com/wanliu/go-oauth2-server/util/password"
 )
 
 var (

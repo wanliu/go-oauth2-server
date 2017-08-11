@@ -4,9 +4,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/RichardKnop/go-oauth2-server/config"
-	"github.com/RichardKnop/go-oauth2-server/database"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/config"
+	"github.com/wanliu/go-oauth2-server/database"
 )
 
 func TestNewDatabaseTypeNotSupported(t *testing.T) {

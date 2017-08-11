@@ -3,9 +3,9 @@ package oauth_test
 import (
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/models"
 	"github.com/RichardKnop/uuid"
 	"github.com/stretchr/testify/assert"
+	"github.com/wanliu/go-oauth2-server/models"
 )
 
 func (suite *OauthTestSuite) TestGrantAccessToken() {

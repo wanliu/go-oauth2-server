@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/RichardKnop/go-oauth2-server/logger"
 	"github.com/urfave/negroni"
+	"github.com/wanliu/go-oauth2-server/logger"
 )
 
 // Logger is a middleware handler that logs the request as it goes in and the response as it goes out.
