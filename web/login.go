@@ -3,6 +3,7 @@ package web
 import (
 	"net/http"
 
+	"github.com/wanliu/go-oauth2-server/models"
 	"github.com/wanliu/go-oauth2-server/session"
 )
 
@@ -31,7 +32,8 @@ func (s *Service) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the client from the request context
-	client, err := getClient(r)
+	client, err := s.getClient(r)
+	// s.GetOauthService().FindClientByClientID(clientID)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -88,4 +90,13 @@ func (s *Service) login(w http.ResponseWriter, r *http.Request) {
 		loginRedirectURI = "/web/admin"
 	}
 	redirectWithQueryString(loginRedirectURI, r.URL.Query(), w, r)
+}
+
+func (s *Service) getClient(r *http.Request) (*models.OauthClient, error) {
+	client, err := getClient(r)
+	if err == ErrClientNotPresent {
+		return s.GetOauthService().FindClientByClientID("normal-client")
+	} else {
+		return client, err
+	}
 }

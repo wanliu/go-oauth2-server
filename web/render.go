@@ -15,6 +15,8 @@ var (
 	loaded    = false
 )
 
+func raw(x string) interface{} { return template.HTML(x) }
+
 // renderTemplate is a wrapper around template.ExecuteTemplate.
 // It writes into a bytes.Buffer before writing to the http.ResponseWriter to catch
 // any errors resulting from populating the template.
@@ -63,13 +65,18 @@ func loadTemplates() {
 		},
 		"web/layouts/inside.html": {
 			"./web/includes/authorize.html",
+			"./web/includes/index.html",
 		},
+	}
+
+	funcMap := template.FuncMap{
+		"raw": raw,
 	}
 
 	for layout, includes := range layoutTemplates {
 		for _, include := range includes {
 			files := []string{include, layout}
-			templates[filepath.Base(include)] = template.Must(template.ParseFiles(files...))
+			templates[filepath.Base(include)] = template.Must(template.New("").Funcs(funcMap).ParseFiles(files...))
 		}
 	}
 

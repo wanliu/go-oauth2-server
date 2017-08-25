@@ -34,6 +34,8 @@ var (
 	ErrUsernameTaken = errors.New("Username taken")
 )
 
+type Params map[string]interface{}
+
 // UserExists returns true if user exists
 func (s *Service) UserExists(username string) bool {
 	_, err := s.FindUserByUsername(username)
@@ -169,4 +171,8 @@ func (s *Service) updateUsernameCommon(db *gorm.DB, user *models.OauthUser, user
 		return ErrCannotSetEmptyUsername
 	}
 	return db.Model(user).UpdateColumn("username", strings.ToLower(username)).Error
+}
+
+func (s *Service) UpdateUser(user *models.OauthUser, params Params) error {
+	return s.db.Model(user).Updates(params).Error
 }

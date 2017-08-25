@@ -27,6 +27,8 @@ services:
     image: "postgres"
     volumes:
       - "db-data:/var/lib/postgresql/data/pgdata"
+    ports: 
+      - "5432:5432"
     environment:
       PGDATA: "/var/lib/postgresql/data/pgdata"
       POSTGRES_USER: "go_oauth2_server"
@@ -45,6 +47,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    volumes:
+      - .:/go/src/github.com/wanliu/go-oauth2-server   
     ports:
       - "8080:8080"
     environment:

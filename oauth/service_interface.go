@@ -30,6 +30,7 @@ type ServiceInterface interface {
 	SetPassword(user *models.OauthUser, password string) error
 	SetPasswordTx(tx *gorm.DB, user *models.OauthUser, password string) error
 	UpdateUsername(user *models.OauthUser, username string) error
+	UpdateUser(user *models.OauthUser, params Params) error
 	UpdateUsernameTx(db *gorm.DB, user *models.OauthUser, username string) error
 	AuthUser(username, thePassword string) (*models.OauthUser, error)
 	GetScope(requestedScope string) (string, error)

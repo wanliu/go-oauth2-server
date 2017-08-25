@@ -2,8 +2,12 @@ package web
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
+	"os"
+	"path/filepath"
+	"time"
 )
 
 // Redirects to a new path while keeping current request's query string
@@ -38,4 +42,29 @@ func errorRedirect(w http.ResponseWriter, r *http.Request, redirectURI *url.URL,
 	if responseType == "token" {
 		redirectWithFragment(redirectURI.String(), query, w, r)
 	}
+}
+
+func uploadFile(field string, r *http.Request) (string, error) {
+	file, _, err := r.FormFile(field)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	defer file.Close()
+	// fmt.Fprintf(w, "%v", handler.Header)
+	os.MkdirAll("./public/uploads/", os.ModePerm)
+	filename := filepath.Join("./public/uploads/", buildFileName(".png"))
+
+	f, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE, 0666)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	defer f.Close()
+	_, err = io.Copy(f, file)
+	return filename, err
+}
+
+func buildFileName(ext string) string {
+	return time.Now().Format("20060102150405") + ext
 }

@@ -27,5 +27,11 @@ exec etcdctl put /config/go_oauth2_server.json '{
       "MaxAge": 604800,
       "HTTPOnly": true
   },
+  "AssetsMappings": [
+    {
+      "Dir": "public/uploads",
+      "Host": "http://localhost:8080/uploads"
+    }
+  ],
   "IsDevelopment": true
 }'

@@ -2,6 +2,7 @@
 
 set -e
 
+watchable="realize r --no-config" 
 executable="go-oauth2-server"
 cmd="$@"
 
@@ -16,4 +17,8 @@ if [ "$1" = 'runserver' ] || [ "$1" = 'loaddata' ]; then
 fi
 
 >&2 echo "Postgres is up - executing command: $cmd"
-exec $executable $cmd
+if [ "$1" = 'runserver' ]; then
+	exec $watchable $cmd
+else
+	exec $executable $cmd
+fi

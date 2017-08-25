@@ -1,6 +1,8 @@
 package web
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
 	"github.com/wanliu/go-oauth2-server/util/routes"
@@ -9,7 +11,48 @@ import (
 // RegisterRoutes registers route handlers for the health service
 func (s *Service) RegisterRoutes(router *mux.Router, prefix string) {
 	subRouter := router.PathPrefix(prefix).Subrouter()
+
+	indexRoute := s.getIndexRoute()
+	if indexRoute != nil {
+		handler := s.getHandler(indexRoute)
+		router.Handle(prefix, handler)
+	}
+
 	routes.AddRoutes(s.GetRoutes(), subRouter)
+}
+
+func (s *Service) getHandler(route *routes.Route) http.Handler {
+	var (
+		handler http.Handler
+		n       *negroni.Negroni
+	)
+
+	// Add any specified middlewares
+	if len(route.Middlewares) > 0 {
+		n = negroni.New()
+
+		for _, middleware := range route.Middlewares {
+			n.Use(middleware)
+		}
+
+		// Wrap the handler in the negroni app with middlewares
+		n.Use(negroni.Wrap(route.HandlerFunc))
+		handler = n
+	} else {
+		handler = route.HandlerFunc
+	}
+
+	return handler
+}
+
+func (s *Service) getIndexRoute() *routes.Route {
+	for _, router := range s.GetRoutes() {
+		router := router
+		if router.Name == "index" {
+			return &router
+		}
+	}
+	return nil
 }
 
 // GetRoutes returns []routes.Route slice for the health service
@@ -23,7 +66,7 @@ func (s *Service) GetRoutes() []routes.Route {
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
 				newGuestMiddleware(s),
-				newClientMiddleware(s),
+				// newClientMiddleware(s),
 			},
 		},
 		{
@@ -34,7 +77,7 @@ func (s *Service) GetRoutes() []routes.Route {
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
 				newGuestMiddleware(s),
-				newClientMiddleware(s),
+				// newClientMiddleware(s),
 			},
 		},
 		{
@@ -89,6 +132,28 @@ func (s *Service) GetRoutes() []routes.Route {
 				new(parseFormMiddleware),
 				newLoggedInMiddleware(s),
 				newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "index",
+			Method:      "GET",
+			Pattern:     "/",
+			HandlerFunc: s.index,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "update_user",
+			Method:      "POST",
+			Pattern:     "/",
+			HandlerFunc: s.updateUser,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
 			},
 		},
 	}

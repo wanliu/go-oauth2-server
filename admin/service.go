@@ -3,7 +3,8 @@ package admin
 import (
 	"net/http"
 
-	"github.com/derekparker/delve/pkg/config"
+	// "github.com/derekparker/delve/pkg/config"
+	"github.com/wanliu/go-oauth2-server/config"
 	"github.com/wanliu/go-oauth2-server/oauth"
 	"github.com/wanliu/go-oauth2-server/session"
 )

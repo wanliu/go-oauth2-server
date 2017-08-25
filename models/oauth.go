@@ -52,8 +52,12 @@ type OauthUser struct {
 	MyGormModel
 	RoleID     sql.NullString `sql:"type:varchar(20);index;not null"`
 	Role       *OauthRole
+	FirstName  sql.NullString `sql:"type:varchar(50)"`
+	LastName   sql.NullString `sql:"type:varchar(50)"`
+	Mobile     sql.NullString `sql:"type:varchar(25);unique"`
 	Username   string         `sql:"type:varchar(254);unique;not null"`
 	Password   sql.NullString `sql:"type:varchar(60)"`
+	AvatarURL  sql.NullString `sql:"type:varchar(1024)"`
 	MetaUserID string         `sql:"index"`
 }
 
@@ -200,4 +204,12 @@ func OauthRefreshTokenPreload(db *gorm.DB) *gorm.DB {
 func OauthRefreshTokenPreloadWithPrefix(db *gorm.DB, prefix string) *gorm.DB {
 	return db.
 		Preload(prefix + "Client").Preload(prefix + "User")
+}
+
+func (usr *OauthUser) Avatar() string {
+	if usr.AvatarURL.Valid {
+		return usr.AvatarURL.String
+	} else {
+		return "/img/default-avatar.png"
+	}
 }

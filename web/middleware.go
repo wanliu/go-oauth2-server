@@ -150,8 +150,13 @@ func newClientMiddleware(service ServiceInterface) *clientMiddleware {
 // ServeHTTP as per the negroni.Handler interface
 func (m *clientMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	// Fetch the client
+	client_id := r.Form.Get("client_id")
+	if len(client_id) == 0 {
+		client_id = "normal-client"
+	}
+
 	client, err := m.service.GetOauthService().FindClientByClientID(
-		r.Form.Get("client_id"), // client ID
+		client_id, // client ID
 	)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)

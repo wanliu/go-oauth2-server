@@ -33,10 +33,16 @@ type SessionConfig struct {
 	HTTPOnly bool
 }
 
+type AssetsMapping struct {
+	Dir  string
+	Host string
+}
+
 // Config stores all configuration options
 type Config struct {
-	Database      DatabaseConfig
-	Oauth         OauthConfig
-	Session       SessionConfig
-	IsDevelopment bool
+	Database       DatabaseConfig
+	Oauth          OauthConfig
+	Session        SessionConfig
+	AssetsMappings []AssetsMapping
+	IsDevelopment  bool
 }

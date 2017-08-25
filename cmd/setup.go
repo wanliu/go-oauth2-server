@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
+	"net/url"
 
 	"github.com/tcnksm/go-input"
 	"github.com/wanliu/go-oauth2-server/services"
@@ -26,7 +28,7 @@ func Setup(configBackend string) error {
 	query := "What is Admin email?"
 	name, err := ui.Ask(query, &input.Options{
 		// Read the default val from env var
-		Default:  "admin@wanliu.biz",
+		Default:  "admin@admin",
 		Required: true,
 		Loop:     true,
 	})
@@ -46,6 +48,33 @@ func Setup(configBackend string) error {
 
 	services.OauthService.CreateUser("superuser", name, pass)
 	log.Printf("Create superuser %s is success.\n", name)
+
+	// create default client for normal signin
+	query = "What is login domain?"
+	domain, err := ui.Ask(query, &input.Options{
+		Default:  "http://localhost:8080/web/",
+		Required: true,
+		Loop:     true,
+		ValidateFunc: func(s string) error {
+			_, err = url.Parse(s)
+			if err != nil {
+				return fmt.Errorf("input must a valid url or domain")
+			}
+			return nil
+		},
+	})
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	redirectUri, err := url.Parse(domain)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	services.OauthService.CreateClient("normal-client", "normal-client-secret", redirectUri.String())
+	services.OauthService.CreateClient("admin-client", "admin-client-secret", redirectUri.String())
 
 	return nil
 }

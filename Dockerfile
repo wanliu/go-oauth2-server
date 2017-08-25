@@ -26,6 +26,12 @@ USER app
 # Install the api program
 RUN go install github.com/wanliu/go-oauth2-server
 
+USER root
+
+RUN curl https://s3.cn-north-1.amazonaws.com.cn/jiejie-tools/realize.tar.gz | tar -xzf - -C /go/bin
+
+USER app
+
 # User docker-entrypoint.sh script as entrypoint
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
