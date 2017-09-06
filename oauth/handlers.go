@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/wanliu/go-oauth2-server/models"
+	"github.com/wanliu/go-oauth2-server/util"
 	"github.com/wanliu/go-oauth2-server/util/response"
 )
 
@@ -76,6 +77,41 @@ func (s *Service) introspectHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Write response to json
 	response.WriteJSON(w, resp, 200)
+}
+
+// (GET /v1/userinfo)
+func (s *Service) userinfoHandler(w http.ResponseWriter, r *http.Request) {
+	// Parse the form so r.Form becomes available
+	raw, err := util.ParseBearerToken(r)
+	if err != nil {
+		response.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	token, err := s.Authenticate(string(raw))
+	if err != nil {
+		response.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if !token.UserID.Valid {
+		response.Error(w, "token missing user_id", http.StatusBadRequest)
+		return
+	}
+
+	usr, err := s.FindUserByID(token.UserID.String)
+	if err != nil {
+		response.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	var user = UserResponse{
+		ID:       usr.ID,
+		NickName: usr.NickName.String,
+		Avatar:   usr.Avatar(),
+	}
+
+	response.WriteJSON(w, &user, http.StatusOK)
 }
 
 // Get client credentials from basic auth and try to authenticate client

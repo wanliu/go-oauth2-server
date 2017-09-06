@@ -81,12 +81,30 @@ func (s *Service) NewIntrospectResponseFromAccessToken(accessToken *models.Oauth
 
 	if accessToken.UserID.Valid {
 		user := new(models.OauthUser)
-		notFound := s.db.Select("username").First(user, accessToken.UserID.String).
+		notFound := s.db.First(user, "id = ?", accessToken.UserID.String).
 			RecordNotFound()
 		if notFound {
 			return nil, ErrUserNotFound
 		}
 		introspectResponse.Username = user.Username
+		userResp := UserResponse{
+			ID:       user.ID,
+			NickName: user.NickName.String,
+			Avatar:   user.Avatar(),
+		}
+
+		introspectResponse.User = &userResp
+	}
+
+	if accessToken.ClientID.Valid && accessToken.UserID.Valid {
+		refreshToken := new(models.OauthRefreshToken)
+		notFound := s.db.First(refreshToken, "user_id = ? and client_id = ?", accessToken.UserID.String, accessToken.ClientID.String).
+			RecordNotFound()
+		if notFound {
+			return nil, ErrRefreshTokenNotFound
+		}
+
+		introspectResponse.RefreshToken = refreshToken.Token
 	}
 
 	return introspectResponse, nil

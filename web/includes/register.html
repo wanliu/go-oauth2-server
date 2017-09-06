@@ -1,10 +1,10 @@
-{{ define "title"}}Register{{ end }}
+{{ define "title"}}注册{{ end }}
 
 {{ define "content" }}
 <div class="container">
 
   <form class="form-signin" action="" method="post">
-    <h2 class="form-signin-heading">Register</h2>
+    <h2 class="form-signin-heading">注册</h2>
     {{ if .error }}
     <p class="text-danger">{{ .error }}</p>
     {{ end }}
@@ -12,8 +12,8 @@
     <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-    <p>Already registered? <a href="/web/login{{ .queryString }}">Log in</a>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+    <p>已经注册了? <a href="/web/login{{ .queryString }}">登入</a>
   </form>
 
 </div> <!-- /container -->

@@ -33,5 +33,11 @@ func (s *Service) GetRoutes() []routes.Route {
 			Pattern:     introspectPath,
 			HandlerFunc: s.introspectHandler,
 		},
+		{
+			Name:        "userinfo",
+			Method:      "GET",
+			Pattern:     "/userinfo",
+			HandlerFunc: s.userinfoHandler,
+		},
 	}
 }

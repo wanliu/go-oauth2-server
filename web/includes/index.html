@@ -54,15 +54,20 @@
         <div class="col-md-9">
             <div class="profile-content">
                 <form enctype="multipart/form-data" method="POST" action="/web/">
+                  <div class="form-group {{ .form.ErrorStatus "NickName" }}">
+                    <label class="control-label" for="user_nickname">昵称</label>
+                    <input type="text" class="form-control" id="user_nickname" aria-describedby="nicknameHelp" name="nickname" value="{{ .currentUser.NickName.String }}" placeholder="网络昵称">
+                    {{ .form.ErrorMsg "NickName" | raw}}
+                  </div>                
                   <div class="row">
                     <div class="form-group {{ .form.ErrorStatus "FirstName" }} col-md-6">
                         <label class="control-label" for="user_firstName">姓</label>
-                        <input type="text" class="form-control" id="user_firstName" aria-describedby="emailHelp" name="first_name" value="{{ .currentUser.FirstName.String }}" placeholder="" >
+                        <input type="text" class="form-control" id="user_firstName" aria-describedby="firstnameHelp" name="first_name" value="{{ .currentUser.FirstName.String }}" placeholder="" >
                         {{ .form.ErrorMsg "FirstName" | raw}}
                     </div>
                     <div class="form-group {{ .form.ErrorStatus "LastName" }} col-md-6">
                         <label class="control-label" for="user_lastName">名</label>
-                        <input type="text" class="form-control" id="user_lastName" aria-describedby="emailHelp" name="last_name" value="{{ .currentUser.LastName.String }}" placeholder="" >
+                        <input type="text" class="form-control" id="user_lastName" aria-describedby="lastnameHelp" name="last_name" value="{{ .currentUser.LastName.String }}" placeholder="" >
                         {{ .form.ErrorMsg "LastName" | raw}}
                     </div> 
                   </div>

@@ -1,37 +1,37 @@
-{{ define "title"}}Authorize{{ end }}
+{{ define "title"}}授权{{ end }}
 
 {{ define "content" }}
 <div class="container">
   <div class="page-header">
-    <h1>Authorize</h1>
+    <h1>授权</h1>
   </div>
   {{ if .error }}
   <div class="alert alert-danger" role="alert">{{ .error }}div>
   {{ else }}
   <form action="" method="post">
     <div class="form-group">
-      <p><b>{{ .clientID }}</b> would like to perform actions on your behalf.</p>
+      <p><b>{{ .clientID }}</b> 想代表您执行的操作.</p>
       {{ if .token }}
-      <p>How long do you want to authorize <b>{{ .clientID }}</b> for?</p>
+      <p>授权多久有效期 <b>{{ .clientID }}</b> 至?</p>
       <div class="radio">
         <label class="radio-inline">
-          <input type="radio" name="lifetime" value="3600"> 1 hour
+          <input type="radio" name="lifetime" value="3600"> 1 小时
         </label>
         <label class="radio-inline">
-          <input type="radio" name="lifetime" value="86400"> 1 day
+          <input type="radio" name="lifetime" value="86400"> 1 天
         </label>
         <label class="radio-inline">
-          <input type="radio" name="lifetime" value="604800" checked> 1 week
+          <input type="radio" name="lifetime" value="604800" checked> 1 星期
         </label>
       </div>
       {{ end }}
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-4 col-xs-6">
-        <input type="submit" class="btn btn-lg btn-block btn-primary" name="allow" value="Allow">
+        <input type="submit" class="btn btn-lg btn-block btn-primary" name="allow" value="授予">
       </div>
       <div class="col-md-3 col-sm-4 col-xs-6">
-        <input type="submit" class="btn btn-lg btn-block btn-danger" name="deny" value="Deny">
+        <input type="submit" class="btn btn-lg btn-block btn-danger" name="deny" value="拒绝">
       </div>
     </div>
   </form>

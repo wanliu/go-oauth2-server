@@ -16,6 +16,7 @@ import (
 
 type UpdateUserForm struct {
 	User       *models.OauthUser
+	NickName   string `form:"nickname" validate:"omitempty,min=2"`
 	FirstName  string `form:"first_name" validate:"max=20"`
 	LastName   string `form:"last_name" validate:"max=20"`
 	Password   string `form:"password" validate:"omitempty,min=6"`
@@ -82,6 +83,11 @@ func (f *UpdateUserForm) Valid() bool {
 
 func (f *UpdateUserForm) Diff() map[string]interface{} {
 	var result = make(map[string]interface{})
+
+	if len(f.NickName) > 0 && f.NickName != f.User.NickName.String {
+		result["NickName"] = f.NickName
+	}
+
 	if len(f.FirstName) > 0 && f.FirstName != f.User.FirstName.String {
 		result["FirstName"] = f.FirstName
 	}

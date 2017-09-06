@@ -57,6 +57,37 @@ func (s *Service) FindUserByUsername(username string) (*models.OauthUser, error)
 	return user, nil
 }
 
+// FindUserByID looks up a user by Id
+func (s *Service) FindUserByID(id string) (*models.OauthUser, error) {
+	// Usernames are case insensitive
+	user := new(models.OauthUser)
+	notFound := s.db.Where("id = ?", id).
+		First(user).RecordNotFound()
+
+	// Not found
+	if notFound {
+		return nil, ErrUserNotFound
+	}
+
+	return user, nil
+}
+
+func (s *Service) GetUserByToken(tok string) (*models.OauthUser, error) {
+	var (
+		token models.OauthAccessToken
+		user  models.OauthUser
+	)
+
+	if err := s.db.Model(&models.OauthAccessToken{}).Where("token = ?", tok).First(&token).Error; err != nil {
+		return nil, err
+	}
+
+	if err := s.db.Model(&models.OauthUser{}).Where("id = ?", token.UserID).First(&user).Error; err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
 // CreateUser saves a new user to database
 func (s *Service) CreateUser(roleID, username, password string) (*models.OauthUser, error) {
 	return s.createUserCommon(s.db, roleID, username, password)

@@ -55,7 +55,9 @@ type OauthUser struct {
 	FirstName  sql.NullString `sql:"type:varchar(50)"`
 	LastName   sql.NullString `sql:"type:varchar(50)"`
 	Mobile     sql.NullString `sql:"type:varchar(25);unique"`
+	Email      sql.NullString `sql:"type:varchar(25);unique"`
 	Username   string         `sql:"type:varchar(254);unique;not null"`
+	NickName   sql.NullString `sql:"type:varchar(20)"`
 	Password   sql.NullString `sql:"type:varchar(60)"`
 	AvatarURL  sql.NullString `sql:"type:varchar(1024)"`
 	MetaUserID string         `sql:"index"`
