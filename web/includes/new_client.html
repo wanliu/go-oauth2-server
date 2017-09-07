@@ -1,0 +1,20 @@
+{{ define "title"}}创建客户端{{ end }}
+
+{{ define "content" }}
+
+    <div class="profile-content">
+    	<form method="POST" action="/web/clients">
+    		<div class="form-group {{ .form.ErrorStatus "Name" }}">
+	            <label class="control-label" for="client_name">名称</label>
+	            <input type="text" class="form-control" id="client_name" aria-describedby="nameHelp" name="name" placeholder="应用名称...">
+	            {{ .form.ErrorMsg "Name" | raw}}
+	        </div>
+    		<div class="form-group {{ .form.ErrorStatus "RedirectURI" }}">
+	            <label class="control-label" for="client_redirect_uri">回调地址</label>
+	            <input type="text" class="form-control" id="client_redirect_uri" aria-describedby="redirect_uriHelp" name="redirect_uri" placeholder="有效的 格式...">
+	            {{ .form.ErrorMsg "RedirectURI" | raw}}
+	        </div> 	    
+            <button type="submit" class="btn btn-success">创建</button>
+        </form>
+    </div>
+{{ end }}

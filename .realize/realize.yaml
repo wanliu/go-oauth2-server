@@ -25,6 +25,8 @@ projects:
     preview: false
     paths:
     - /
+    - web/includes/*.html
+    - web/layouts/*.html
     ignore_paths:
     - vendor
     exts:

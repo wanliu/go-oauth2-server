@@ -40,4 +40,4 @@ test-with-coverage:
 	#go tool cover -html=coverage-all.out
 
 build:
-	@docker build -t go-oauth2-server:latest .
+	@docker build --rm -t go-oauth2-server:latest .

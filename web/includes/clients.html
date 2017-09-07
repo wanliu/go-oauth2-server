@@ -1,0 +1,18 @@
+{{ define "title"}}客户端应用{{ end }}
+
+{{ define "content" }}
+
+    <div class="profile-content">
+    	{{ if len .clients | gt 0 }}
+		 <ul class="list-group">
+		    <li class="list-group-item">Cras justo odio</li>
+		    <li class="list-group-item">Dapibus ac facilisis in</li>
+		    <li class="list-group-item">Morbi leo risus</li>
+		    <li class="list-group-item">Porta ac consectetur ac</li>
+		    <li class="list-group-item">Vestibulum at eros</li>
+	    </ul>
+	    {{ else }}
+	    	<a class="btn btn-primary btn-lg" href="/web/clients/new" role="button">创建新应用</a>
+	    {{ end }}
+    </div>
+{{ end }}

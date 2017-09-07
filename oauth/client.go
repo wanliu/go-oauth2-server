@@ -44,12 +44,17 @@ func (s *Service) FindClientByClientID(clientID string) (*models.OauthClient, er
 
 // CreateClient saves a new client to database
 func (s *Service) CreateClient(clientID, secret, redirectURI string) (*models.OauthClient, error) {
-	return s.createClientCommon(s.db, clientID, secret, redirectURI)
+	return s.createClientCommon(s.db, clientID, secret, redirectURI, "", "")
+}
+
+// CreateClient saves a new client to database
+func (s *Service) CreateClientByUserID(userId, name, clientID, secret, redirectURI string) (*models.OauthClient, error) {
+	return s.createClientCommon(s.db, clientID, secret, redirectURI, userId, name)
 }
 
 // CreateClientTx saves a new client to database using injected db object
 func (s *Service) CreateClientTx(tx *gorm.DB, clientID, secret, redirectURI string) (*models.OauthClient, error) {
-	return s.createClientCommon(tx, clientID, secret, redirectURI)
+	return s.createClientCommon(tx, clientID, secret, redirectURI, "", "")
 }
 
 // AuthClient authenticates client
@@ -68,7 +73,7 @@ func (s *Service) AuthClient(clientID, secret string) (*models.OauthClient, erro
 	return client, nil
 }
 
-func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI string) (*models.OauthClient, error) {
+func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI, userId, name string) (*models.OauthClient, error) {
 	// Check client ID
 	if s.ClientExists(clientID) {
 		return nil, ErrClientIDTaken
@@ -85,6 +90,8 @@ func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI 
 			ID:        uuid.New(),
 			CreatedAt: time.Now().UTC(),
 		},
+		Name:        util.StringOrNull(name),
+		UserID:      util.StringOrNull(userId),
 		Key:         strings.ToLower(clientID),
 		Secret:      string(secretHash),
 		RedirectURI: util.StringOrNull(redirectURI),
@@ -93,4 +100,13 @@ func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI 
 		return nil, err
 	}
 	return client, nil
+}
+
+func (s *Service) ListClientByUserID(userId string, offset, count int) ([]models.OauthClient, error) {
+	var clients []models.OauthClient
+	if err := s.db.Find(&clients, "user_id = ?", userId).Offset(offset).Limit(count).Error; err != nil {
+		return nil, err
+	}
+
+	return clients, nil
 }

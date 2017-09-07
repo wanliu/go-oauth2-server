@@ -67,6 +67,10 @@ func loadTemplates() {
 			"./web/includes/authorize.html",
 			"./web/includes/index.html",
 		},
+		"web/layouts/profile.html": {
+			"./web/includes/clients.html",
+			"./web/includes/new_client.html",
+		},
 	}
 
 	funcMap := template.FuncMap{

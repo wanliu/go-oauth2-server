@@ -9,6 +9,7 @@ import (
 	"github.com/go-playground/form"
 	"github.com/go-playground/locales/zh_Hans"
 	ut "github.com/go-playground/universal-translator"
+	gform "github.com/wanliu/go-oauth2-server/form"
 	"github.com/wanliu/go-oauth2-server/models"
 	zh_Hans_translations "github.com/wanliu/zh_Hans"
 	"gopkg.in/go-playground/validator.v9"
@@ -24,6 +25,15 @@ type UpdateUserForm struct {
 	Mobile     string `form:"mobile" validate:"cnmobile"`
 	Errors     validator.ValidationErrors
 	custErrors [][2]string
+}
+
+type createClientForm struct {
+	gform.Form
+	Client      *models.OauthClient
+	Name        string `form:"name" validate:"required,min=8"`
+	Key         string `form:"key" validate:"max=20"`
+	Secret      string `form:"secret" validate:"max=20"`
+	RedirectURI string `form:"redirect_uri" validate:"omitempty,uri,max=512"`
 }
 
 var (
@@ -54,6 +64,10 @@ func cnmobileRegisFunc(ut ut.Translator) (err error) {
 
 func parseForm(v interface{}, values url.Values) error {
 	return decoder.Decode(v, values)
+}
+
+func (f *createClientForm) Valid() bool {
+	return f.ValidForm(f)
 }
 
 func (f *UpdateUserForm) Valid() bool {

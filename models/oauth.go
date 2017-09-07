@@ -12,6 +12,9 @@ import (
 // OauthClient ...
 type OauthClient struct {
 	MyGormModel
+	UserID      sql.NullString `sql:"index"`
+	Name        sql.NullString `sql:"type:varchar(100)"`
+	User        *OauthUser
 	Key         string         `sql:"type:varchar(254);unique;not null"`
 	Secret      string         `sql:"type:varchar(60);not null"`
 	RedirectURI sql.NullString `sql:"type:varchar(200)"`

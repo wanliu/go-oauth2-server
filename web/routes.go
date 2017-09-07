@@ -156,5 +156,60 @@ func (s *Service) GetRoutes() []routes.Route {
 				// newClientMiddleware(s),
 			},
 		},
+		{
+			Name:        "list_clients",
+			Method:      "GET",
+			Pattern:     "/clients",
+			HandlerFunc: s.listClient,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "new_client",
+			Method:      "GET",
+			Pattern:     "/clients/new",
+			HandlerFunc: s.newClientForm,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "create_client",
+			Method:      "POST",
+			Pattern:     "/clients",
+			HandlerFunc: s.createClient,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "client_detail",
+			Method:      "GET",
+			Pattern:     "/clients/{id}",
+			HandlerFunc: s.clientDetail,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
+			},
+		},
+		{
+			Name:        "delete_client",
+			Method:      "DELETE",
+			Pattern:     "/clients/:id",
+			HandlerFunc: s.deleteClient,
+			Middlewares: []negroni.Handler{
+				new(parseFormMiddleware),
+				newLoggedInMiddleware(s),
+				// newClientMiddleware(s),
+			},
+		},
 	}
 }

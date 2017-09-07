@@ -2,6 +2,9 @@
 	"ImportPath": "github.com/wanliu/go-oauth2-server",
 	"GoVersion": "go1.8",
 	"GodepVersion": "v79",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/RichardKnop/go-fixtures",
@@ -55,6 +58,26 @@
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"
 		},
 		{
+			"ImportPath": "github.com/davecgh/go-spew/spew",
+			"Comment": "v1.1.0",
+			"Rev": "346938d642f2ec3594ed81d874461961cd0faa76"
+		},
+		{
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v3.0.0-20-ga539ee1",
+			"Rev": "a539ee1a749a2b895533f979515ac7e6e0f5b650"
+		},
+		{
+			"ImportPath": "github.com/fatih/color",
+			"Comment": "v1.4.1",
+			"Rev": "9131ab34cf20d2f6d83fdc67168a5430d1c7dc23"
+		},
+		{
+			"ImportPath": "github.com/fsnotify/fsnotify",
+			"Comment": "v1.4.2-6-g4da3e2c",
+			"Rev": "4da3e2cfbabc9f751898f250b49f2439785783a1"
+		},
+		{
 			"ImportPath": "github.com/go-playground/form",
 			"Comment": "v3.0.0",
 			"Rev": "a852958e6bc0e555a59b0dadaabd8d4398841c67"
@@ -66,11 +89,6 @@
 		},
 		{
 			"ImportPath": "github.com/go-playground/locales/currency",
-			"Comment": "v0.11.1-2-g1e5f116",
-			"Rev": "1e5f1161c6416a5ff48840eb8724a394e48cc534"
-		},
-		{
-			"ImportPath": "github.com/go-playground/locales/en",
 			"Comment": "v0.11.1-2-g1e5f116",
 			"Rev": "1e5f1161c6416a5ff48840eb8724a394e48cc534"
 		},
@@ -136,13 +154,34 @@
 			"Rev": "1c35d901db3da928c72a72d8458480cc9ade058f"
 		},
 		{
-			"ImportPath": "github.com/kr/pretty",
-			"Comment": "go.weekly.2011-12-22-36-gcfb55aa",
-			"Rev": "cfb55aafdaf3ec08f0db22699ab822c50091b1c4"
+			"ImportPath": "github.com/labstack/echo",
+			"Comment": "3.2.2",
+			"Rev": "6c54ff78a2351623e91ccf085d94a78d02b1882c"
 		},
 		{
-			"ImportPath": "github.com/kr/text",
-			"Rev": "7cafcd837844e784b526369c9bce262804aebc60"
+			"ImportPath": "github.com/labstack/echo/middleware",
+			"Comment": "3.2.2",
+			"Rev": "6c54ff78a2351623e91ccf085d94a78d02b1882c"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/bytes",
+			"Comment": "0.2.2",
+			"Rev": "779b8a8b9850a97acba6a3fe20feb628c39e17c1"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/color",
+			"Comment": "0.2.2",
+			"Rev": "779b8a8b9850a97acba6a3fe20feb628c39e17c1"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/log",
+			"Comment": "0.2.2",
+			"Rev": "779b8a8b9850a97acba6a3fe20feb628c39e17c1"
+		},
+		{
+			"ImportPath": "github.com/labstack/gommon/random",
+			"Comment": "0.2.2",
+			"Rev": "779b8a8b9850a97acba6a3fe20feb628c39e17c1"
 		},
 		{
 			"ImportPath": "github.com/lib/pq",
@@ -153,6 +192,21 @@
 			"ImportPath": "github.com/lib/pq/oid",
 			"Comment": "go1.0-cutoff-166-g2704adc",
 			"Rev": "2704adc878c21e1329f46f6e56a1c387d788ff94"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Comment": "v0.0.9-2-g6c0fd4a",
+			"Rev": "6c0fd4aa6ec5818d5e3ea9e03ae436972a6c5a9a"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Comment": "v0.0.2",
+			"Rev": "fc9e8d8ef48496124e79ae0df75490096eccf6fe"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v1.2.0-80-gcf7286f",
+			"Rev": "cf7286f069c3ef596efcc87781a4653a2e7607bd"
 		},
 		{
 			"ImportPath": "github.com/mitchellh/mapstructure",
@@ -167,8 +221,67 @@
 			"Rev": "8118ae63850fee22b2fe43cea81d3bc149774503"
 		},
 		{
+			"ImportPath": "github.com/pmezard/go-difflib/difflib",
+			"Comment": "v1.0.0",
+			"Rev": "792786c7400a136282c1664665ae0a8db921c6c2"
+		},
+		{
+			"ImportPath": "github.com/stretchr/objx",
+			"Rev": "1a9d0bb9f541897e62256577b352fdbc1fb4fd94"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/assert",
+			"Comment": "v1.1.4-66-gf6abca5",
+			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/mock",
+			"Comment": "v1.1.4-66-gf6abca5",
+			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/require",
+			"Comment": "v1.1.4-66-gf6abca5",
+			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
+		},
+		{
+			"ImportPath": "github.com/stretchr/testify/suite",
+			"Comment": "v1.1.4-66-gf6abca5",
+			"Rev": "f6abca593680b2315d2075e0f5e2a9751e3f431a"
+		},
+		{
 			"ImportPath": "github.com/tcnksm/go-input",
 			"Rev": "bbe13e92fa7dda71a4e012e3f427df11866c7651"
+		},
+		{
+			"ImportPath": "github.com/tockins/interact",
+			"Comment": "1.1-12-g620e305",
+			"Rev": "620e305cb360fbbaaec15504caada4303f65a370"
+		},
+		{
+			"ImportPath": "github.com/tockins/realize",
+			"Comment": "v1.4.1-6-g6200779",
+			"Rev": "6200779845033f8b55b4374efe4ba776052346ab"
+		},
+		{
+			"ImportPath": "github.com/tockins/realize/server",
+			"Comment": "v1.4.1-6-g6200779",
+			"Rev": "6200779845033f8b55b4374efe4ba776052346ab"
+		},
+		{
+			"ImportPath": "github.com/tockins/realize/settings",
+			"Comment": "v1.4.1-6-g6200779",
+			"Rev": "6200779845033f8b55b4374efe4ba776052346ab"
+		},
+		{
+			"ImportPath": "github.com/tockins/realize/style",
+			"Comment": "v1.4.1-6-g6200779",
+			"Rev": "6200779845033f8b55b4374efe4ba776052346ab"
+		},
+		{
+			"ImportPath": "github.com/tockins/realize/watcher",
+			"Comment": "v1.4.1-6-g6200779",
+			"Rev": "6200779845033f8b55b4374efe4ba776052346ab"
 		},
 		{
 			"ImportPath": "github.com/unrolled/secure",
@@ -185,8 +298,28 @@
 			"Rev": "3019daf414cfd2c51de68c3a535707c0de6e3d83"
 		},
 		{
+			"ImportPath": "github.com/valyala/bytebufferpool",
+			"Rev": "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
+		},
+		{
+			"ImportPath": "github.com/valyala/fasttemplate",
+			"Rev": "dcecefd839c4193db0d35b88ec65b4c12d360ab0"
+		},
+		{
+			"ImportPath": "github.com/wanliu/util/rand",
+			"Rev": "9891f148d60094b1b00b1b32e2589fd61d91a8e0"
+		},
+		{
 			"ImportPath": "github.com/wanliu/zh_Hans",
 			"Rev": "4c015fd4ca4345f5c7181c0bdade762c81232a74"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/acme",
+			"Rev": "122d919ec1efcfb58483215da23f815853e24b81"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/acme/autocert",
+			"Rev": "122d919ec1efcfb58483215da23f815853e24b81"
 		},
 		{
 			"ImportPath": "golang.org/x/crypto/bcrypt",
@@ -226,6 +359,10 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net/trace",
+			"Rev": "513929065c19401a1c7b76ecd942f9f86a0c061b"
+		},
+		{
+			"ImportPath": "golang.org/x/net/websocket",
 			"Rev": "513929065c19401a1c7b76ecd942f9f86a0c061b"
 		},
 		{
@@ -331,6 +468,11 @@
 			"ImportPath": "gopkg.in/tylerb/graceful.v1",
 			"Comment": "v1.2.15",
 			"Rev": "4654dfbb6ad53cb5e27f37d99b02e16c1872fbbb"
+		},
+		{
+			"ImportPath": "gopkg.in/urfave/cli.v2",
+			"Comment": "v1.19.1-264-g50a0fde",
+			"Rev": "50a0fdeea6330854c7b05371cce1fac8c7e636d2"
 		},
 		{
 			"ImportPath": "gopkg.in/yaml.v2",
