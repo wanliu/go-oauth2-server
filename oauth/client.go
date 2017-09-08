@@ -73,14 +73,14 @@ func (s *Service) AuthClient(clientID, secret string) (*models.OauthClient, erro
 	return client, nil
 }
 
-func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI, userId, name string) (*models.OauthClient, error) {
+func (s *Service) createClientCommon(db *gorm.DB, clientID, pass, redirectURI, userId, name string) (*models.OauthClient, error) {
 	// Check client ID
 	if s.ClientExists(clientID) {
 		return nil, ErrClientIDTaken
 	}
 
 	// Hash password
-	secretHash, err := password.HashPassword(secret)
+	secretHash, err := password.HashPassword(pass)
 	if err != nil {
 		return nil, err
 	}
@@ -94,6 +94,7 @@ func (s *Service) createClientCommon(db *gorm.DB, clientID, secret, redirectURI,
 		UserID:      util.StringOrNull(userId),
 		Key:         strings.ToLower(clientID),
 		Secret:      string(secretHash),
+		Password:    util.StringOrNull(pass),
 		RedirectURI: util.StringOrNull(redirectURI),
 	}
 	if err := db.Create(client).Error; err != nil {

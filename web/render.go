@@ -70,6 +70,7 @@ func loadTemplates() {
 		"web/layouts/profile.html": {
 			"./web/includes/clients.html",
 			"./web/includes/new_client.html",
+			"./web/includes/client_detail.html",
 		},
 	}
 

@@ -17,6 +17,7 @@ type OauthClient struct {
 	User        *OauthUser
 	Key         string         `sql:"type:varchar(254);unique;not null"`
 	Secret      string         `sql:"type:varchar(60);not null"`
+	Password    sql.NullString `sql:"type:varchar(32)"`
 	RedirectURI sql.NullString `sql:"type:varchar(200)"`
 }
 

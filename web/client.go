@@ -2,8 +2,10 @@ package web
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/wanliu/go-oauth2-server/form"
 	"github.com/wanliu/util/rand"
 )
@@ -28,11 +30,13 @@ func (s *Service) listClient(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Printf("len clients: %d", len(clients))
+
 	errMsg, _ := sessionService.GetFlashMessage()
 	renderTemplate(w, "clients.html", map[string]interface{}{
 		"error":       errMsg,
 		"currentUser": currentUser,
-		"clients":     clients,
+		"clients":     &clients,
 		"username":    session.Username,
 		"queryString": getQueryString(r.URL.Query()),
 	})
@@ -90,15 +94,15 @@ func (s *Service) createClient(w http.ResponseWriter, r *http.Request) {
 	if f.Valid() {
 		var (
 			clientID = rand.String(32)
-			secret   = rand.String(32)
+			pass     = rand.String(32)
 		)
 
-		client, err := s.GetOauthService().CreateClientByUserID(currentUser.ID, f.Name, clientID, secret, f.RedirectURI)
+		client, err := s.GetOauthService().CreateClientByUserID(currentUser.ID, f.Name, clientID, pass, f.RedirectURI)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		redirectWithFragment(fmt.Sprintf("/web/clients/%s", client.ID), r.URL.Query(), w, r)
+		redirectWithFragment(fmt.Sprintf("/web/clients/%s", client.Key), r.URL.Query(), w, r)
 	} else {
 		renderTemplate(w, "new_client.html", map[string]interface{}{
 			"error":       errMsg,
@@ -112,19 +116,37 @@ func (s *Service) createClient(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Service) clientDetail(w http.ResponseWriter, r *http.Request) {
-	// sessionService, err := getSessionService(r)
-	// if err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// 	return
-	// }
 
-	// session, err := sessionService.GetUserSession()
-	// currentUser, err := s.GetOauthService().FindUserByUsername(session.Username)
-	// if err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// 	return
-	// }
+	sessionService, err := getSessionService(r)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
+	session, err := sessionService.GetUserSession()
+	currentUser, err := s.GetOauthService().FindUserByUsername(session.Username)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	vars := mux.Vars(r)
+	clientID := vars["id"]
+
+	client, err := s.GetOauthService().FindClientByClientID(clientID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+		return
+	}
+
+	errMsg, _ := sessionService.GetFlashMessage()
+	renderTemplate(w, "client_detail.html", map[string]interface{}{
+		"error":       errMsg,
+		"currentUser": currentUser,
+		"client":      client,
+		"username":    session.Username,
+		"queryString": getQueryString(r.URL.Query()),
+	})
 }
 
 func (s *Service) deleteClient(w http.ResponseWriter, r *http.Request) {

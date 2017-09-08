@@ -1,0 +1,10 @@
+{{ define "title"}}客户端详细{{ end }}
+
+{{ define "content" }}
+
+    <div class="profile-content">
+    	<h1 class="page-header">客户端 <small>{{.client.Name.String}}</small></h1>
+		<p class="lead">Key <span class="label label-default">{{.client.Key}}</span></p>
+		<p class="lead">密码 <span class="label label-default">{{.client.Password.String}}</span></p>
+    </div>
+{{ end }}
