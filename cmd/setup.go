@@ -46,6 +46,8 @@ func Setup(configBackend string) error {
 		log.Fatal(err)
 	}
 
+	services.OauthService.CreateRole("superuser", "Superuser")
+	services.OauthService.CreateRole("user", "User")
 	services.OauthService.CreateUser("superuser", name, pass)
 	log.Printf("Create superuser %s is success.\n", name)
 
@@ -73,6 +75,8 @@ func Setup(configBackend string) error {
 		log.Fatal(err)
 	}
 
+	services.OauthService.CreateScope("read", true)
+	services.OauthService.CreateScope("read_write", false)
 	services.OauthService.CreateClient("normal-client", "normal-client-secret", redirectUri.String())
 	services.OauthService.CreateClient("admin-client", "admin-client-secret", redirectUri.String())
 

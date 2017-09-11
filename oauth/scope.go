@@ -4,7 +4,9 @@ import (
 	"errors"
 	"sort"
 	"strings"
+	"time"
 
+	"github.com/RichardKnop/uuid"
 	"github.com/wanliu/go-oauth2-server/models"
 )
 
@@ -54,4 +56,21 @@ func (s *Service) ScopeExists(requestedScope string) bool {
 
 	// Return true only if all requested scopes found
 	return count == len(scopes)
+}
+
+func (s *Service) CreateScope(name string, isDefault bool) (*models.OauthScope, error) {
+	var scope = models.OauthScope{
+		MyGormModel: models.MyGormModel{
+			ID:        uuid.New(),
+			CreatedAt: time.Now().UTC(),
+		},
+		Scope:     name,
+		IsDefault: isDefault,
+	}
+
+	if err := s.db.FirstOrCreate(&scope).Error; err != nil {
+		return nil, err
+	}
+
+	return &scope, nil
 }

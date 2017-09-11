@@ -2,18 +2,26 @@
 # These tasks are responsible for copying the latest dev/production code from
 # the version control system.
 
-- name: Copy the code from repository
-  unarchive:
-    src: '{{playbook_dir}}/../build/oauth2-server.zip'
-    dest: /var/src/app/oauth2-server
+- name: Ensures dir exists
+  file:
+    path: /usr/src/app/oauth2-server
+    state: directory
     owner: ec2-user
     group: ec2-user
-    mode: 0644    
-  become: true
+  become: yes
+
+- name: Copy the code from repository
+  unarchive:
+    copy: yes
+    src: "{{playbook_dir}}/../build/oauth2-server.zip"
+    dest: /usr/src/app/oauth2-server
+    owner: ec2-user
+    group: ec2-user
+  become: yes
 
 - name: Creates the index.php file
   template: 
     src: oauth2-server.conf.j2
     dest: /etc/nginx/conf.d/oauth2-server.conf
-  become: true
+  become: yes
 

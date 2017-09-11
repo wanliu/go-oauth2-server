@@ -16,6 +16,7 @@ type ServiceInterface interface {
 	RestrictToRoles(allowedRoles ...string)
 	IsRoleAllowed(role string) bool
 	FindRoleByID(id string) (*models.OauthRole, error)
+	CreateRole(id, name string) (*models.OauthRole, error)
 	GetRoutes() []routes.Route
 	RegisterRoutes(router *mux.Router, prefix string)
 	ClientExists(clientID string) bool
@@ -40,6 +41,7 @@ type ServiceInterface interface {
 	GetScope(requestedScope string) (string, error)
 	GetDefaultScope() string
 	ScopeExists(requestedScope string) bool
+	CreateScope(scope string, isdefault bool) (*models.OauthScope, error)
 	Login(client *models.OauthClient, user *models.OauthUser, scope string) (*models.OauthAccessToken, *models.OauthRefreshToken, error)
 	GrantAuthorizationCode(client *models.OauthClient, user *models.OauthUser, expiresIn int, redirectURI, scope string) (*models.OauthAuthorizationCode, error)
 	GrantAccessToken(client *models.OauthClient, user *models.OauthUser, expiresIn int, scope string) (*models.OauthAccessToken, error)

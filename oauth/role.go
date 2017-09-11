@@ -19,3 +19,12 @@ func (s *Service) FindRoleByID(id string) (*models.OauthRole, error) {
 	}
 	return role, nil
 }
+
+func (s *Service) CreateRole(id, name string) (*models.OauthRole, error) {
+	var role = models.OauthRole{ID: id, Name: name}
+
+	if err := s.db.FirstOrCreate(&role).Error; err != nil {
+		return nil, err
+	}
+	return &role, nil
+}

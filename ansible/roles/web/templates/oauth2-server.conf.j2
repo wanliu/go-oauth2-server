@@ -5,8 +5,27 @@ upstream oauth2_server{
 server {
     listen 80;
     server_name jiejie.io;
-
+    location / {
+    	rewrite ^/$ /web permanent;
+    }
+    
     location ~ /web {
         proxy_pass http://oauth2_server;
     }
+
+    location ~ /css {
+        proxy_pass http://oauth2_server;
+    }
+
+    location ~ /img {
+        proxy_pass http://oauth2_server;
+    }
+
+    location ~ /uploads {
+        proxy_pass http://oauth2_server;
+    }
+
+    location ~ /v1/oauth {
+        proxy_pass http://oauth2_server;
+    }      
 }

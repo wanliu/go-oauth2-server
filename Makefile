@@ -68,5 +68,8 @@ deploy-cd: build/oauth2-server-linux
 deploy: build/oauth2-server-linux
 	@-rm build/oauth2-server.zip
 	@cp -r scripts build/
+	@mkdir -p build/public/; cp -r public/css build/public/css
+	@cp -r public/img build/public/img
+	@-cp favicon.ico build/public/
 	@cd build; zip -r oauth2-server.zip .
 	@ansible-playbook -i ansible/hosts ansible/site.yml
