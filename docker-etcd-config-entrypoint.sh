@@ -8,10 +8,10 @@ while ! etcdctl endpoint health &>/dev/null; do :; done
 exec etcdctl put /config/go_oauth2_server.json '{
   "Database": {
     "Type": "postgres",
-    "Host": "postgres",
+    "Host": "127.0.0.1",
     "Port": 5432,
-    "User": "go_oauth2_server",
-    "Password": "",
+    "User": "postgres",
+    "Password": "postgres",
     "DatabaseName": "go_oauth2_server",
     "MaxIdleConns": 5,
     "MaxOpenConns": 5

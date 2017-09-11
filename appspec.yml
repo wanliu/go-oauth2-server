@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: oauth2-server-linux
+    destination: /usr/src/app/oauth2-server
+  - source: scripts/
+    destination: /usr/src/app/oauth2-server/scripts
+hooks:
+  ApplicationStart:
+    - location: scripts/start.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 300
+      runas: root

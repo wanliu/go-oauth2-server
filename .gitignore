@@ -1,4 +1,5 @@
 go-oauth2-server
+build/
 .bash_profile
 etcd-data
 postgres-data

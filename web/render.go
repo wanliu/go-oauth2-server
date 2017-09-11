@@ -2,12 +2,16 @@ package web
 
 import (
 	"fmt"
-	"html/template"
+	// "html/template"
 	"net/http"
 	"path/filepath"
 
+	"github.com/arschles/go-bindata-html-template"
+
 	"github.com/oxtoacart/bpool"
 )
+
+//go:generate go-bindata -pkg web includes layouts
 
 var (
 	templates map[string]*template.Template
@@ -59,18 +63,18 @@ func loadTemplates() {
 	bufpool = bpool.NewBufferPool(64)
 
 	layoutTemplates := map[string][]string{
-		"web/layouts/outside.html": {
-			"./web/includes/register.html",
-			"./web/includes/login.html",
+		"layouts/outside.html": {
+			"includes/register.html",
+			"includes/login.html",
 		},
-		"web/layouts/inside.html": {
-			"./web/includes/authorize.html",
-			"./web/includes/index.html",
+		"layouts/inside.html": {
+			"includes/authorize.html",
+			"includes/index.html",
 		},
-		"web/layouts/profile.html": {
-			"./web/includes/clients.html",
-			"./web/includes/new_client.html",
-			"./web/includes/client_detail.html",
+		"layouts/profile.html": {
+			"includes/clients.html",
+			"includes/new_client.html",
+			"includes/client_detail.html",
 		},
 	}
 
@@ -81,7 +85,8 @@ func loadTemplates() {
 	for layout, includes := range layoutTemplates {
 		for _, include := range includes {
 			files := []string{include, layout}
-			templates[filepath.Base(include)] = template.Must(template.New("").Funcs(funcMap).ParseFiles(files...))
+
+			templates[filepath.Base(include)] = template.Must(template.New("", Asset).Funcs(funcMap).ParseFiles(files...))
 		}
 	}
 

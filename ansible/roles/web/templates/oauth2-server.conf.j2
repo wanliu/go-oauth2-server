@@ -1,0 +1,12 @@
+upstream oauth2_server{
+    server 127.0.0.1:8080;
+}
+
+server {
+    listen 80;
+    server_name jiejie.io;
+
+    location ~ /web {
+        proxy_pass http://oauth2_server;
+    }
+}

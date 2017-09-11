@@ -23,6 +23,10 @@
 			"Rev": "c55201b036063326c5b1b89ccfe45a184973d073"
 		},
 		{
+			"ImportPath": "github.com/arschles/go-bindata-html-template",
+			"Rev": "839a6918b9ff535f95246ef0f43edfdb4ed186be"
+		},
+		{
 			"ImportPath": "github.com/coreos/etcd/auth/authpb",
 			"Comment": "v3.2.0-rc.0-74-g386374a",
 			"Rev": "386374a6d0b27fd13dbf3fd4bc0483b7fef67d05"

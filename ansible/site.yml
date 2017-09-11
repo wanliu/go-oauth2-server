@@ -1,0 +1,6 @@
+- name: configure and deploy the webservers and application code
+  hosts: webservers
+  remote_user: ec2-user
+
+  roles:
+    - web
