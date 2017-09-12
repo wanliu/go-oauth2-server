@@ -25,6 +25,10 @@ server {
         proxy_pass http://oauth2_server;
     }
 
+    location ~ /favicon.ico {
+        proxy_pass http://oauth2_server;
+    }
+
     location ~ /v1/oauth {
         proxy_pass http://oauth2_server;
     }      

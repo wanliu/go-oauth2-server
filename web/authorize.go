@@ -28,6 +28,7 @@ func (s *Service) authorizeForm(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "authorize.html", map[string]interface{}{
 		"error":       errMsg,
 		"clientID":    client.Key,
+		"clientName":  client.Name,
 		"queryString": getQueryString(query),
 		"token":       responseType == "token",
 	})

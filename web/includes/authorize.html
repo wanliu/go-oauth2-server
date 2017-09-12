@@ -10,7 +10,7 @@
   {{ else }}
   <form action="" method="post">
     <div class="form-group">
-      <p><b>{{ .clientID }}</b> 想代表您执行的操作.</p>
+      <p><b>{{ or .clientName.String .clientID  }}</b> 想代表您执行的操作.</p>
       {{ if .token }}
       <p>授权多久有效期 <b>{{ .clientID }}</b> 至?</p>
       <div class="radio">

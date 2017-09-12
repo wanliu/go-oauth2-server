@@ -51,6 +51,7 @@ test-with-coverage:
 	#go tool cover -html=coverage-all.out
 
 build-linux:
+	@go generate ./web
 	@docker run -it --rm -v $(shell pwd):/go/src/github.com/wanliu/go-oauth2-server --entrypoint "go" go-oauth2-server:latest build -o build/oauth2-server-linux .
 
 build-docker:
@@ -68,8 +69,8 @@ deploy-cd: build/oauth2-server-linux
 deploy: build/oauth2-server-linux
 	@-rm build/oauth2-server.zip
 	@cp -r scripts build/
-	@mkdir -p build/public/; cp -r public/css build/public/css
-	@cp -r public/img build/public/img
-	@-cp favicon.ico build/public/
+	@mkdir -p build/public/; cp -r public/css build/public
+	@cp -r public/img build/public
+	@cp public/favicon.ico build/public
 	@cd build; zip -r oauth2-server.zip .
 	@ansible-playbook -i ansible/hosts ansible/site.yml
