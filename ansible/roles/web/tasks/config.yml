@@ -1,0 +1,29 @@
+---
+# These tasks are responsible for copying the latest dev/production code from
+# the version control system.
+
+# - name: Creates the nginx conf file
+#   template: 
+#     src: jiejie.conf.j2
+#     dest: /etc/nginx/conf.d/jiejie.conf
+#   become: yes
+
+# - name: Ensures upstream dir exists
+#   file:
+#     path: /etc/nginx/conf.d/upstream
+#     state: directory
+#     owner: root
+#     group: root
+#   become: yes
+
+# - name: Creates the nginx upstream conf file
+#   template: 
+#     src: upstream.conf.j2
+#     dest: /etc/nginx/conf.d/upstream/oauth2-server-upstream.conf
+#   become: yes
+
+# - name: Creates the nginx oauth2-server conf file
+#   template: 
+#     src: oauth2-server.conf.j2
+#     dest: /etc/nginx/conf.d/oauth2-server.conf
+#   become: yes

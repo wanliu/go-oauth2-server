@@ -18,10 +18,8 @@
     owner: ec2-user
     group: ec2-user
   become: yes
+  notify:
+    - kill oauth2-server
+    - start oauth2-server
 
-- name: Creates the index.php file
-  template: 
-    src: oauth2-server.conf.j2
-    dest: /etc/nginx/conf.d/oauth2-server.conf
-  become: yes
 

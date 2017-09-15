@@ -2,5 +2,10 @@
 # Handler for the webtier: handlers are called by other plays.
 # See http://docs.ansible.com/playbooks_intro.html for more information about handlers.
 
-- name: restart iptables
-  service: name=iptables state=restarted
+- name: kill oauth2-server
+  action: shell pkill oauth2-server
+  ignore_errors: yes  
+
+- name: start oauth2-server
+  raw: cd /usr/src/app/oauth2-server; nohup ./oauth2-server-linux runserver & sleep 1
+  ignore_errors: yes
