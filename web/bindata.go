@@ -329,16 +329,16 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	"includes/authorize.html": includesAuthorizeHtml,
+	"includes/authorize.html":     includesAuthorizeHtml,
 	"includes/client_detail.html": includesClient_detailHtml,
-	"includes/clients.html": includesClientsHtml,
-	"includes/index.html": includesIndexHtml,
-	"includes/login.html": includesLoginHtml,
-	"includes/new_client.html": includesNew_clientHtml,
-	"includes/register.html": includesRegisterHtml,
-	"layouts/inside.html": layoutsInsideHtml,
-	"layouts/outside.html": layoutsOutsideHtml,
-	"layouts/profile.html": layoutsProfileHtml,
+	"includes/clients.html":       includesClientsHtml,
+	"includes/index.html":         includesIndexHtml,
+	"includes/login.html":         includesLoginHtml,
+	"includes/new_client.html":    includesNew_clientHtml,
+	"includes/register.html":      includesRegisterHtml,
+	"layouts/inside.html":         layoutsInsideHtml,
+	"layouts/outside.html":        layoutsOutsideHtml,
+	"layouts/profile.html":        layoutsProfileHtml,
 }
 
 // AssetDir returns the file names below a certain
@@ -380,20 +380,21 @@ type bintree struct {
 	Func     func() (*asset, error)
 	Children map[string]*bintree
 }
+
 var _bintree = &bintree{nil, map[string]*bintree{
-	"includes": &bintree{nil, map[string]*bintree{
-		"authorize.html": &bintree{includesAuthorizeHtml, map[string]*bintree{}},
-		"client_detail.html": &bintree{includesClient_detailHtml, map[string]*bintree{}},
-		"clients.html": &bintree{includesClientsHtml, map[string]*bintree{}},
-		"index.html": &bintree{includesIndexHtml, map[string]*bintree{}},
-		"login.html": &bintree{includesLoginHtml, map[string]*bintree{}},
-		"new_client.html": &bintree{includesNew_clientHtml, map[string]*bintree{}},
-		"register.html": &bintree{includesRegisterHtml, map[string]*bintree{}},
+	"includes": {nil, map[string]*bintree{
+		"authorize.html":     {includesAuthorizeHtml, map[string]*bintree{}},
+		"client_detail.html": {includesClient_detailHtml, map[string]*bintree{}},
+		"clients.html":       {includesClientsHtml, map[string]*bintree{}},
+		"index.html":         {includesIndexHtml, map[string]*bintree{}},
+		"login.html":         {includesLoginHtml, map[string]*bintree{}},
+		"new_client.html":    {includesNew_clientHtml, map[string]*bintree{}},
+		"register.html":      {includesRegisterHtml, map[string]*bintree{}},
 	}},
-	"layouts": &bintree{nil, map[string]*bintree{
-		"inside.html": &bintree{layoutsInsideHtml, map[string]*bintree{}},
-		"outside.html": &bintree{layoutsOutsideHtml, map[string]*bintree{}},
-		"profile.html": &bintree{layoutsProfileHtml, map[string]*bintree{}},
+	"layouts": {nil, map[string]*bintree{
+		"inside.html":  {layoutsInsideHtml, map[string]*bintree{}},
+		"outside.html": {layoutsOutsideHtml, map[string]*bintree{}},
+		"profile.html": {layoutsProfileHtml, map[string]*bintree{}},
 	}},
 }}
 
@@ -443,4 +444,3 @@ func _filePath(dir, name string) string {
 	cannonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
-
