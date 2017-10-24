@@ -69,7 +69,7 @@ deploy-cd: build/oauth2-server-linux
 deploy: build/oauth2-server-linux
 	@-rm build/oauth2-server.zip
 	@cp -r scripts build/
-	@mkdir -p build/public/; cp -r public/css build/public
+	@mkdir -p build/public/; cp -r public/styles build/public
 	@cp -r public/img build/public
 	@cp public/favicon.ico build/public
 	@cd build; zip -r oauth2-server.zip .
