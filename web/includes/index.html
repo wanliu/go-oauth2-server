@@ -1,11 +1,9 @@
-{{ define "title"}}帐号设置 - Jiejie {{ end }}
-
-{{ define "content" }}
-<div class="container">
-    <div class="row profile">
-        <div class="col-md-3">
-            <div class="profile-sidebar">
-                <!-- SIDEBAR USERPIC -->
+<div id="tm-bg"></div>
+<div id="tm-wrap">
+    <div class="tm-main-content">
+    <div class="tm-main-content">
+        <header>
+            {{if .currentUser.Role}}
                 <div class="profile-userpic">
                     <img src="{{ .currentUser.Avatar }}" class="img-responsive" alt="">
                 </div>
@@ -21,82 +19,241 @@
                     </div>
                     {{end}}
                 </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <button type="button" class="btn btn-danger btn-sm">Message</button>
-                </div>
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="/web">
-                            <i class="glyphicon glyphicon-user"></i>
-                            帐号 </a>
-                        </li>
-                        <li>
-                            <a href="/web/clients">
-                            <i class="glyphicon glyphicon-cloud"></i>
-                            应用 </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                            <i class="glyphicon glyphicon-flag"></i>
-                            帮助 </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- END MENU -->
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="profile-content">
-                <form enctype="multipart/form-data" method="POST" action="/web/">
-                  <div class="form-group {{ .form.ErrorStatus "NickName" }}">
-                    <label class="control-label" for="user_nickname">昵称</label>
-                    <input type="text" class="form-control" id="user_nickname" aria-describedby="nicknameHelp" name="nickname" value="{{ .currentUser.NickName.String }}" placeholder="网络昵称">
-                    {{ .form.ErrorMsg "NickName" | raw}}
-                  </div>                
-                  <div class="row">
-                    <div class="form-group {{ .form.ErrorStatus "FirstName" }} col-md-6">
-                        <label class="control-label" for="user_firstName">姓</label>
-                        <input type="text" class="form-control" id="user_firstName" aria-describedby="firstnameHelp" name="first_name" value="{{ .currentUser.FirstName.String }}" placeholder="" >
-                        {{ .form.ErrorMsg "FirstName" | raw}}
+            {{else}}
+                <button onclick="window.location.href = '/web/login'">
+                    登录
+                </button>
+                <button onclick="window.location.href = '/web/register'">
+                    注册
+                </button>
+            {{end}}
+        </header>
+        <div class="container tm-site-header-container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
+                    <div class="tm-site-header">
+                        <h1 class="mb-4">湖南捷杰信息科技</h1>
+
+                        <img src="img/underline.png" class="img-fluid mb-4">
+                       <!--  <p style="font-size:12px;">
+                            “进货管家”小程序，可以在微信小程序上购买你想的要产品，足不出户，便买购买天下。
+                        </p>
+                        <p style="font-size:12px;">
+                            “进货管家”APP，可以给供应商们提供一个平台，把他们的商品，放入“进货管家”APP中。使顾客可以在“进货管家”小程序上购买。
+                        </p> -->
                     </div>
-                    <div class="form-group {{ .form.ErrorStatus "LastName" }} col-md-6">
-                        <label class="control-label" for="user_lastName">名</label>
-                        <input type="text" class="form-control" id="user_lastName" aria-describedby="lastnameHelp" name="last_name" value="{{ .currentUser.LastName.String }}" placeholder="" >
-                        {{ .form.ErrorMsg "LastName" | raw}}
-                    </div> 
-                  </div>
-                                 
-                  <div class="form-group {{ .form.ErrorStatus "AvatarURL" }}">
-                    <input type="file" class="form-control-file avatar" id="user_avatarURL" name="avatar_url">
-                    <label for="user_avatarURL"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>上传头像图片…</span></label>                    
-                    {{ .form.ErrorMsg "AvatarURL" | raw}}
-                  </div>
-                  <div class="form-group {{ .form.ErrorStatus "Mobile" }}">
-                    <label class="control-label" for="user_mobile">手机</label>
-                    <input type="mobile" class="form-control" id="user_mobile" aria-describedby="mobileHelp" name="mobile" value="{{ .currentUser.Mobile.String }}" placeholder="接收短信验证的手机号码">
-                    <small id="mobileHelp" class="form-text text-muted">我们不会向任何人泄露你的号码。</small>
-                    {{ .form.ErrorMsg "Mobile" | raw}}
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label" for="user_email">电子邮件</label>
-                    <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" name="username" placeholder="输入有一个效的邮箱地址" value="{{ .currentUser.Username }}" disabled>
-                    <small id="emailHelp" class="form-text text-muted">我们不会向任何人泄露你的电子邮件。</small>
-                  </div>
-                  <div class="form-group {{ .form.ErrorStatus "Password" }} ">
-                    <label class="control-label" for="user_password">密码</label>
-                    <input type="password" class="form-control" id="user_password" name="password" placeholder="输入密码">
-                    {{ .form.ErrorMsg "Password" | raw}}
-                  </div>
-                  <button type="submit" class="btn btn-success">保存</button>
-                </form>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="content">
+                        <div class="grid">
+                            <!-- 主页 -->
+                            <div class="grid__item" id="home-link">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-home fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">捷杰科技</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h2 class="tm-page-title">欢迎来到捷杰科技</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <p style="font-size:14px;">
+                                                    湖南捷杰信息科技有限公司始建于2015年11月09日，是专注于互联网/移动互联网/电子商务行业的民营企业公司。
+                                                </P>
+                                                <p style="font-size: 14px">
+                                                    主要经营软件开发;软件技术转让;软件技术服务;电子商务平台的开发建设;信息系统集成服务;信息技术咨询服务;通信基站技术咨询;智能电网技术咨询;数据处理和存储服务;集成电路设计;数字内容服务。
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                <P style="font-size:14px;">
+                                                    湖南捷杰信息科技有限公司以始终坚持“诚信为本、客户至上、互惠互利，开拓创新”的企业宗旨，本着“本质为本、专业执着、精益求精”的经营销售理念，力求给客户提供全方位优质服务，我们相信诚实正直、开拓进取地为公司发展做正确的事情，将为公司和个人带来共同的利益和进步。经过几年的发展，已成为互联网/移动互联网/电子商务行业知名企业。
+                                                </p>
+                                                <P style="font-size:14px;">
+                                                    湖南捷杰科技，旗下有万流网，万流营销云平台，耒阳街上等几大品牌，致力对移动电商提供运营，营销一体化方案，目前正在打造成一流的服务云平台。
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 联系我们 -->
+                            <div class="grid__item" id="team-link">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <!-- <i class="fas fa-users fa-3x tm-nav-icon"></i> -->
+                                        <i class="fas fa-phone-volume fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">联系我们</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="pt-sm-4 pb-sm-4 pl-sm-5 pr-sm-5 pt-2 pb-2 pl-3 pr-3">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h2 class="tm-page-title">联系我们</h2>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div style="display: flex;width: 60%;">
+                                                        <div style="width:100%;text-align: left;">
+                                                            电话：
+                                                        </div>
+                                                        <div style="width:50%;text-align: right;">
+                                                            0731-83991940
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: flex;width: 60%;margin-top: 20px;">
+                                                        <div style="width:100%;text-align: left;">
+                                                            邮箱：
+                                                        </div>
+                                                        <div style="width:50%;text-align: right;">
+                                                            hysios@gmail.com
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: flex;width: 60%;margin-top: 20px;">
+                                                        <div style="width:20%;text-align: left;">
+                                                            地址：
+                                                        </div>
+                                                        <div style="width:100%;text-align: right;">
+                                                            湖南省长沙市雨花区马王堆南路汇达大厦1501室
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: flex;width: 60%;margin-top: 20px;">
+                                                        <div style="width:100%;text-align: left;">
+                                                            微信公众号：
+                                                        </div>
+                                                        <div style="width:50%;text-align: right;">
+                                                            捷杰信息科技
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 研发项目 -->
+                            <div class="grid__item">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-handshake fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">研发项目</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="p-sm-4 p-2">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h2 class="tm-page-title"></h2>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <img src="img/weix.jpg" class="img-fluid mb-3">
+                                                    <p>&nbsp&nbsp使用微信“扫一扫”扫描上方二维码，即可使用</p>
+                                                    <p>&nbsp&nbsp“进货管家”小程序。</p>
+
+                                                </div>
+                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                   <p>&nbsp&nbsp使用QQ“扫一扫”扫描下方二维码，</p>
+                                                    <p>&nbsp&nbsp即可使用“进货管家(供应商版)”APP。</p>
+                                                    <img src="img/APP.png" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 意见反馈 -->
+                            <div class="grid__item">
+                                <div class="product">
+                                    <div class="tm-nav-link">
+                                        <i class="fas fa-comments fa-3x tm-nav-icon"></i>
+                                        <span class="tm-nav-text">意见反馈</span>
+                                        <div class="product__bg"></div>
+                                    </div>
+                                    <div class="product__description">
+                                        <div class="pt-sm-4 pb-sm-4 pl-sm-5 pr-sm-5 pt-2 pb-2 pl-3 pr-3">
+                                            <div class="row mb-3">
+                                                <div class="col-12">
+                                                    <h2 class="tm-page-title">意见反馈</h2>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-12">
+                                                    <p>您的反馈，是我们最大的动力</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <form action="index.html" method="post" class="contact-form">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                                              <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="姓名"  required/>
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 tm-col-email">
+                                                              <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="邮箱"  required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                          <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="请留言....." required></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary tm-btn-submit">提交
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div> <!-- /container -->
-{{ end }}
+        <footer class="container-fluid">
+            <div class="flex-box">
+                <div class="services-block-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="img/shouji.png" class="icon-img">
+                        </div>
+                        <text class="h3">简单便捷</text>
+                        <div class="text">只使用手机就可以处理“进，销，存”的手机APP</div>
+                    </div>
+                </div>
+                <div class="services-block-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="img/tongyi.png" class="icon-img">
+                        </div>
+                        <text class="h3">分开管理</text>
+                        <div class="text">简单易上手，店家使用APP，客户使用小程序，分开管理</div>
+                    </div>
+                </div>
+                <div class="services-block-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="img/exchange.png" class="icon-img">
+                        </div>
+                        <text class="h3">数据同步</text>
+                        <div class="text">APP和微信小程序的数据实时同步</div>
+                        <div class="text">客户在小程序上购买东西，店家马上就会从APP上收到通知</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <p class="small tm-copyright-text">©湖南捷杰信息有限公司版权所有. 湘ICP备13005289号-3</p> -->
+        </footer>
+    </div>
+</div>

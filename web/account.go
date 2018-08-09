@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func (s *Service) index(w http.ResponseWriter, r *http.Request) {
+func (s *Service) account(w http.ResponseWriter, r *http.Request) {
 	// Get the session service from the request context
 	sessionService, err := getSessionService(r)
 	if err != nil {
@@ -28,7 +28,7 @@ func (s *Service) index(w http.ResponseWriter, r *http.Request) {
 
 	// Render the template
 	errMsg, _ := sessionService.GetFlashMessage()
-	renderTemplate(w, "index.html", map[string]interface{}{
+	renderTemplate(w, "account.html", map[string]interface{}{
 		"error":       errMsg,
 		"currentUser": currentUser,
 		"form":        &f,
