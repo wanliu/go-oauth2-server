@@ -1,9 +1,10 @@
 body {
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: 19px;
-	font-weight: 300;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 300;
     color:white;
     position: relative;
+    background-color: #2c2a35;
 }
 
 h1 { font-size: 2.8rem; }
@@ -13,13 +14,17 @@ h1 { font-size: 2.8rem; }
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    height: 73.73%;
     background-image: url(../img/pop-bg.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     z-index: -1;
     transition: all 0.3s ease;
+    /* filter: blur(2px); */
+    /* filter: grayscale(100%); */
+    filter: grayscale(50%);
 }
 
 #tm-bg:after {
@@ -43,7 +48,11 @@ p {
     line-height: 1.9;
     letter-spacing: 1px;
 }
-
+.tm-site-header-container{
+    position: absolute;
+    top: 30%;
+    /* left: 24.333%; */
+}
 .tm-main-content {
     display: flex;
     align-items: center;
@@ -284,12 +293,11 @@ p {
 header{
     position: absolute;
     top: 20px;
-    text-align: right;
-    left: 0;
     right: 60px;
 }
 header button{
     margin-left: 20px;
+    cursor: pointer
 }
 
 /* Footer */
@@ -319,16 +327,11 @@ footer {
 a, button { transition: all 0.3s ease; }
 a:hover,
 a:focus {
-	text-decoration: none;
-	outline: none;
+    text-decoration: none;
+    outline: none;
 }
 
 p:last-child { margin-bottom: 0; }
-
-@media (min-width: 900px) {
-    .container { max-width: 900px; }
-
-}
 
 @media (min-width: 767px) and (max-width: 991px), (max-width: 440px) {
     .tm-nav-link {
@@ -337,6 +340,24 @@ p:last-child { margin-bottom: 0; }
     }
     .services-block-one{
         font-size: 12px;
+    }
+    .tm-site-header-container{
+        left: 7.3333%;
+    }
+}
+
+@media (min-width: 900px) {
+    .container { max-width: 900px; }
+
+}
+@media (min-width:1200px) {
+    .tm-site-header-container{
+        left: 23.3333%;
+    }
+}
+@media (min-width:1800px) {
+    .tm-site-header-container{
+        left: 24.3333%;
     }
 }
 
@@ -353,18 +374,9 @@ p:last-child { margin-bottom: 0; }
     }
     .grid { justify-content: flex-end; }
     .tm-col-email { padding-left: 15px; }
-    .tm-reverse-sm { flex-direction: column-reverse; }
-}
-
-@media (max-width: 544px) {
-    .tm-main-content { flex-direction: column; }
-    .details__bg { padding: 55px 40px; }
-    .slick-dots li button:before { font-size: 15px; }
-
-    footer {
-        position: relative;
-        bottom: 0;
-    }
+    .tm-reverse-sm { flex-direction: column-reverse;}
+    /* .introduce{ margin-top: 75px; } */
+    .services-block-one{    font-size: 12px;    }
 }
 
 @media (max-width: 419px) {
@@ -375,10 +387,14 @@ p:last-child { margin-bottom: 0; }
 
     .fa-3x { font-size: 2.2em; }
 }
-.container-fluid{
+
+/* 特征 features */
+
+.features{
     position: relative;
     margin-left: auto;
     margin-right: auto;
+
 }
 .flex-box{
     display: flex;
@@ -388,26 +404,23 @@ p:last-child { margin-bottom: 0; }
 }
 .services-block-one{
     position: relative;
-    margin-bottom: -150px;
+    margin-bottom: -180px;
     z-index: 99;
     width: 33.33333%;
-    /* background-color: rgba(255,255,225,0.1); */
 }
-.services-block-one:hover{
+/* .services-block-one:hover{
     background: #2c2a35;
     color: #a9a9a9;
 
-}
+} */
 .services-block-one .inner-box{
     position: relative;
     padding:  6px 50px;
-    /* margin: 45px 0; */
     text-align: center;
 
 }
 .services-block-one .inner-box .icon-box{
     position: relative;
-    /* color: #1e4398; */
     font-size: 60px;
     margin-bottom: 16px;
     background-repeat: no-repeat;
@@ -417,15 +430,55 @@ p:last-child { margin-bottom: 0; }
     width: 90px;
     height: 90px;
 }
-/* .h3 {
-    font-size: 1.75rem;
-    margin-bottom: .5rem;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: inherit;
-    margin-top: 0;
-} */
+
+
+
+
+
+
+/* 右侧固定 */
+
+ul {
+    list-style: none;
+}
+
+.right-fixed {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+}
+
+.fixed-ul li {
+    position: relative;
+    line-height: 60px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+}
+
+.fixed-image {
+    position: absolute;
+    left: 50px;
+    bottom: 2px;
+    height: 40px;
+    line-height: 40px;
+    -webkit-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    z-index: 1;
+    opacity: 0;
+}
+.fixed-ul li:hover .fixed-image {
+    left: -300px;
+    opacity: 1;
+}
+.img-item{
+    width: 50px;
+    height: 50px;
+}
+.fixed-image img{
+    width: 300px;
+    height: 300px;
+}
 
 .index-profile {
     float: right;

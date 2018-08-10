@@ -3,7 +3,6 @@ package web
 import (
 	"fmt"
 	// "html/template"
-	"log"
 	"net/http"
 	"path/filepath"
 
@@ -26,7 +25,6 @@ func raw(x string) interface{} { return template.HTML(x) }
 // It writes into a bytes.Buffer before writing to the http.ResponseWriter to catch
 // any errors resulting from populating the template.
 func renderTemplate(w http.ResponseWriter, name string, data map[string]interface{}) error {
-	log.Printf("--------------> render 1")
 	loadTemplates()
 
 	// Ensure the template exists in the map.
@@ -34,19 +32,15 @@ func renderTemplate(w http.ResponseWriter, name string, data map[string]interfac
 	if !ok {
 		return fmt.Errorf("The template %s does not exist", name)
 	}
-	log.Printf("--------------> render 2")
 
 	// Create a buffer to temporarily write to and check if any errors were encountered.
 	buf := bufpool.Get()
 	defer bufpool.Put(buf)
-	log.Printf("--------------> render 3")
 
 	err := tmpl.ExecuteTemplate(buf, "base", data)
 	if err != nil {
-		log.Printf("------------> render err: %v", err.Error())
 		return err
 	}
-	log.Printf("--------------> render 4")
 
 	// The X-Frame-Options HTTP response header can be used to indicate whether
 	// or not a browser should be allowed to render a page in a <frame>,
@@ -55,9 +49,7 @@ func renderTemplate(w http.ResponseWriter, name string, data map[string]interfac
 	w.Header().Set("X-Frame-Options", "deny")
 	// Set the header and write the buffer to the http.ResponseWriter
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	log.Printf("--------------> render 5")
 	buf.WriteTo(w)
-	log.Printf("--------------> render 6")
 	return nil
 }
 

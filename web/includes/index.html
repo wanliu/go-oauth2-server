@@ -51,7 +51,7 @@
                     <div class="content">
                         <div class="grid">
                             <!-- 主页 -->
-                            <div class="grid__item" id="home-link">
+                           <!--  <div class="grid__item" id="home-link">
                                 <div class="product">
                                     <div class="tm-nav-link">
                                         <i class="fas fa-home fa-3x tm-nav-icon"></i>
@@ -85,7 +85,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- 联系我们 -->
                             <div class="grid__item" id="team-link">
                                 <div class="product">
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                             <!-- 研发项目 -->
-                            <div class="grid__item">
+                            <!-- <div class="grid__item">
                                 <div class="product">
                                     <div class="tm-nav-link">
                                         <i class="fas fa-handshake fa-3x tm-nav-icon"></i>
@@ -174,7 +174,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- 意见反馈 -->
                             <div class="grid__item">
                                 <div class="product">
@@ -197,7 +197,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <form action="index.html" method="post" class="contact-form">
+                                                    <!-- <form action="?action=reg" method="post" class="contact-form"> -->
+                                                    <form action="https://jiejie.io" method="get"
+                                                    class="contact-form" id="feedback">
                                                         <div class="row">
                                                             <div class="form-group col-md-6 col-lg-6 col-xl-6">
                                                               <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="姓名"  required/>
@@ -224,14 +226,15 @@
             </div>
         </div>
     </div>
-        <footer class="container-fluid">
+    <!--  特征 features  -->
+        <footer class="features">
             <div class="flex-box">
                 <div class="services-block-one">
                     <div class="inner-box">
                         <div class="icon-box">
                             <img src="img/shouji.png" class="icon-img">
                         </div>
-                        <text class="h3">简单便捷</text>
+                        <span class="h3">简单便捷</span>
                         <div class="text">只使用手机就可以处理“进，销，存”的手机APP</div>
                     </div>
                 </div>
@@ -240,7 +243,7 @@
                         <div class="icon-box">
                             <img src="img/tongyi.png" class="icon-img">
                         </div>
-                        <text class="h3">分开管理</text>
+                        <span class="h3">分开管理</span>
                         <div class="text">简单易上手，店家使用APP，客户使用小程序，分开管理</div>
                     </div>
                 </div>
@@ -249,15 +252,39 @@
                         <div class="icon-box">
                             <img src="img/exchange.png" class="icon-img">
                         </div>
-                        <text class="h3">数据同步</text>
+                        <span class="h3">数据同步</span>
                         <div class="text">APP和微信小程序的数据实时同步</div>
                         <div class="text">客户在小程序上购买东西，店家马上就会从APP上收到通知</div>
                     </div>
                 </div>
             </div>
-
             <!-- <p class="small tm-copyright-text">©湖南捷杰信息有限公司版权所有. 湘ICP备13005289号-3</p> -->
         </footer>
+
+
+        <!--  右侧固定  -->
+        <div class="right-fixed">
+             <ul class="fixed-ul">
+                <li>
+                    <img src="img/weixin.png" class="img-item">
+                    <div class="fixed-image">
+                        <img src="img/weix.jpg">
+                    </div>
+                </li>
+                <li>
+                    <img src="img/android.png" class="img-item">
+                    <div class="fixed-image">
+                        <img src="img/APP.png">
+                    </div>
+                </li>
+                <li>
+                    <img src="img/ios.png" class="img-item">
+                    <div class="fixed-image">
+                        <img src="img/APP.png">
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 {{end}}
