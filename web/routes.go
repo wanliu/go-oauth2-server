@@ -148,7 +148,7 @@ func (s *Service) GetRoutes() []routes.Route {
 		{
 			Name:        "account",
 			Method:      "GET",
-			Pattern:     "/",
+			Pattern:     "/account",
 			HandlerFunc: s.account,
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
@@ -159,7 +159,7 @@ func (s *Service) GetRoutes() []routes.Route {
 		{
 			Name:        "update_user",
 			Method:      "POST",
-			Pattern:     "/",
+			Pattern:     "/account",
 			HandlerFunc: s.updateUser,
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),

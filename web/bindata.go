@@ -94,7 +94,7 @@ func includesAccountHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "includes/account.html", size: 6189, mode: os.FileMode(436), modTime: time.Unix(1513562238, 0)}
+	info := bindataFileInfo{name: "includes/account.html", size: 6189, mode: os.FileMode(436), modTime: time.Unix(1533866310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -174,7 +174,7 @@ func includesIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "includes/index.html", size: 17093, mode: os.FileMode(436), modTime: time.Unix(1533807074, 0)}
+	info := bindataFileInfo{name: "includes/index.html", size: 17093, mode: os.FileMode(436), modTime: time.Unix(1533866310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -254,7 +254,7 @@ func layoutsIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "layouts/index.html", size: 2151, mode: os.FileMode(436), modTime: time.Unix(1533806839, 0)}
+	info := bindataFileInfo{name: "layouts/index.html", size: 2151, mode: os.FileMode(436), modTime: time.Unix(1533866310, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
