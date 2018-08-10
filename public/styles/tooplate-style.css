@@ -426,3 +426,17 @@ p:last-child { margin-bottom: 0; }
     color: inherit;
     margin-top: 0;
 } */
+
+.index-profile {
+    float: right;
+}
+
+.index-profile .profile-userpic {
+    display: inline-block;
+    max-width: 35px;
+    max-height: 35px;
+}
+
+.index-profile .profile-usertitle {
+    display: inline-block;
+}

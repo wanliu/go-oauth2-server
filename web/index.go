@@ -2,7 +2,7 @@ package web
 
 import (
 	// "fmt"
-	// "log"
+	"log"
 	"net/http"
 	// "net/url"
 	// "path"
@@ -16,6 +16,8 @@ func (s *Service) index(w http.ResponseWriter, r *http.Request) {
 		currentUser *models.OauthUser
 		username    string
 	)
+
+	log.Printf("--------------> index ")
 
 	// Get the session service from the request context
 	sessionService, err := getSessionService(r)

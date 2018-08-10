@@ -141,7 +141,7 @@ func (s *Service) GetRoutes() []routes.Route {
 			HandlerFunc: s.index,
 			Middlewares: []negroni.Handler{
 				new(parseFormMiddleware),
-				newLoggedInMiddleware(s),
+				newMayLoggedInMiddleware(s),
 				// newClientMiddleware(s),
 			},
 		},

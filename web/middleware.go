@@ -136,6 +136,87 @@ func (m *loggedInMiddleware) authenticate(userSession *session.UserSession) erro
 	return nil
 }
 
+// mayLoggedInMiddleware initialises session and the user can be logined or not
+type mayLoggedInMiddleware struct {
+	service ServiceInterface
+}
+
+// newLoggedInMiddleware creates a new mayLoggedInMiddleware instance
+func newMayLoggedInMiddleware(service ServiceInterface) *mayLoggedInMiddleware {
+	return &mayLoggedInMiddleware{service: service}
+}
+
+// ServeHTTP as per the negroni.Handler interface
+func (m *mayLoggedInMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	// Initialise the session service
+	m.service.setSessionService(r, w)
+	sessionService := m.service.GetSessionService()
+
+	// Attempt to start the session
+	if err := sessionService.StartSession(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	context.Set(r, sessionServiceKey, sessionService)
+
+	// Try to get a user session
+	userSession, err := sessionService.GetUserSession()
+	if err == nil {
+		// Authenticate
+		err = m.authenticate(userSession)
+		if err == nil {
+			sessionService.SetUserSession(userSession)
+		}
+	}
+
+	// Update the user session
+
+	next(w, r)
+}
+
+func (m *mayLoggedInMiddleware) authenticate(userSession *session.UserSession) error {
+	// Try to authenticate with the stored access token
+	_, err := m.service.GetOauthService().Authenticate(userSession.AccessToken)
+	if err == nil {
+		// Access token valid, return
+		return nil
+	}
+	// Access token might be expired, let's try refreshing...
+
+	// Fetch the client
+	client, err := m.service.GetOauthService().FindClientByClientID(
+		userSession.ClientID, // client ID
+	)
+	if err != nil {
+		return err
+	}
+
+	// Validate the refresh token
+	theRefreshToken, err := m.service.GetOauthService().GetValidRefreshToken(
+		userSession.RefreshToken, // refresh token
+		client, // client
+	)
+	if err != nil {
+		return err
+	}
+
+	// Log in the user
+	accessToken, refreshToken, err := m.service.GetOauthService().Login(
+		theRefreshToken.Client,
+		theRefreshToken.User,
+		theRefreshToken.Scope,
+	)
+	if err != nil {
+		return err
+	}
+
+	userSession.AccessToken = accessToken.Token
+	userSession.RefreshToken = refreshToken.Token
+
+	return nil
+}
+
 // clientMiddleware takes client_id param from the query string and
 // makes a database lookup for a client with the same client ID
 type clientMiddleware struct {
